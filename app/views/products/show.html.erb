@@ -1,0 +1,23 @@
+
+<%if flash[:notice]%>
+    <%flash.each do |name,msg|%>
+        <p class="text-center" style='color: green'><%= msg%></p>
+    <%end%>
+<%end%>
+<h1 class="text-center">About the Product</h1>
+<p class="text-center">Showing the Detailed Information of the Product</p>
+<h1 class="text-center">Product:<%=@product.name%> </h1>
+
+<h6 class="text-center">Brand: <%=@product.brand%> , Price: <%=@product.price%> </h2>
+
+
+
+<div class=" p-5" >
+<%= button_to "Edit Product" , edit_product_path, method: :get,class:"btn-primary col-12 mt-4"%>
+
+<%= button_to "Delete Product", product_path, method: :delete,class:"btn-danger col-12 mt-4"%>
+
+<%= button_to "View all Products", products_path,method: :get,class:"btn-success col-12 mt-4"%>
+
+
+</div>
