@@ -1,3 +1,9 @@
+
+<%if flash[:notice]%>
+    <%flash.each do |name,msg|%>
+        <p class="text-center" style='color: green'><%= msg%></p>
+    <%end%>
+<%end%>
 <h1 class="text-center">Products List</h1>
 <p class="text-center">Click the button to add Products</p>
 

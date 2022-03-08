@@ -11,7 +11,7 @@ class ProductsController < ApplicationController
     @product= Product.create(params.require(:product).permit(:name, :price, :brand))
     if @product.valid?
       flash[:notice]="Successfuly Performed create!"
-      redirect_to product_path(@product)
+      redirect_to products_path
     else 
       flash[:errors]=@product.errors.full_messages
       redirect_to new_product_path
