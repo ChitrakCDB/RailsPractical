@@ -1,0 +1,23 @@
+<h1 class="text-center">Edit Book Form</h1>
+<p class="text-center">Edit Book by submitting the form</p>
+<%if flash[:errors] %>
+  <%flash[:errors].each do |error| %>
+    <p class="text-center" style='color: red'><%= error %></p>
+  <% end %>
+<% end %>
+<div class=" p-5" >
+  <%= form_for @book do |f| %>
+    <%= f.label :bookname %>
+    <%= f.text_field :name ,class:"col-12" %>
+    <br>
+    <%= f.label :price%>
+    <%= f.number_field :price ,class:"col-12" %>
+    <br>
+    <%= f.label :author %>
+    <%= f.select :author_id, Author.all.map { |t| [t.firstname+ " " +t.lastname, t.id]},class:"dropdown-menu dropdown-item" %>
+    <br>
+    <div class="d-flex">
+      <%=f.submit class:"btn-success  mt-4  border-0 p-2 rounded-pill center" %> &nbsp;
+    </div>
+  <% end %>
+</div>

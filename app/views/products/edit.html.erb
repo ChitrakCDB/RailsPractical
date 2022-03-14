@@ -1,13 +1,12 @@
 <h1 class="text-center">Modify Product Information</h1>
 <p class="text-center">edit the values you want to be changed</p>
 <%if flash[:errors]%>
-    <%flash[:errors].each do |error|%>
-        <p class="text-center" style='color: red'><%= error%></p>
-    <%end%>
+  <%flash[:errors].each do |error|%>
+    <p class="text-center" style='color: red'><%= error%></p>
+  <%end%>
 <%end%>
-
 <div class=" p-5" >
-<%= form_for @product,url: {action: :update} do |f|%>
+  <%= form_for @product,url: {action: :update} do |f|%>
     <%= f.label :name%>
     <%= f.text_field :name ,class:"col-12 "%>
     <br>
@@ -18,5 +17,5 @@
     <%= f.text_field :brand ,class:"col-12 "%>
     <br>
     <%=f.submit class:"btn-success col-12 mt-4"%>
-<%end%>
+  <%end%>
 </div>
