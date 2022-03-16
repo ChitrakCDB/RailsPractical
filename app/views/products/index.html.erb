@@ -1,0 +1,15 @@
+<%if flash[:notice]%>
+  <%flash.each do |name,msg|%>
+    <p class="text-center" style='color: green'><%= msg%></p>
+  <%end%>
+<%end%>
+<h1 class="text-center">Products List</h1>
+<p class="text-center">Click the button to add Products</p>
+<div class="position-absolute top-50 start-50 translate-middle">
+  <ul class="list-group list-group-numbered">
+    <% @products.each do |product|%>
+      <li class="list-group-item text-center"><%= link_to product.name, product_path(product)%></li>
+    <%end%>
+  </ul>
+  <%= button_to "Add New Product" , new_product_path,method:  :get,class:"btn-success col-12 mt-4" %>
+</div>

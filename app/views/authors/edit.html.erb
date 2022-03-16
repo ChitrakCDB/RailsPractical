@@ -1,0 +1,27 @@
+<h1 class="text-center">Update Author Form</h1>
+<p class="text-center">Update Author info by submitting the form</p>
+<%if flash[:errors] %>
+  <%flash[:errors].each do |error| %>
+    <p class="text-center" style='color: red'><%= error %></p>
+  <% end %>
+<% end %>
+<div class=" p-5" >
+  <%= form_for @author do |f| %>
+    <%= f.label :firstname %>
+    <%= f.text_field :firstname ,class:"col-12" %>
+    <br>
+    <%= f.label :lastname %>
+    <%= f.text_field :lastname ,class:"col-12" %>
+    <br>
+    <%= f.label :DOB %>
+    <br>
+    <%= f.date_select :dob, start_year: 1800, end_year: Time.now.year %>
+    <br>
+    <%= f.label :Email %>
+    <%= f.text_field :email, class: "col-12" %>
+    <br>
+    <div class="d-flex">
+      <%=f.submit class:"btn-success  mt-4  border-0 p-2 rounded-pill center" %> &nbsp;
+    </div>
+  <% end %>
+</div>

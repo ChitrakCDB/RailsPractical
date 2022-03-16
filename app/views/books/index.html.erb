@@ -1,0 +1,33 @@
+<div class="center">
+  <%if flash[:notice] %>
+    <%flash.each do |name,msg| %>
+      <p class="text-center" style='color: green'><%= msg %></p>
+    <% end %>
+  <% end %>
+  <h1 class="text-center">Books List</h1>
+  <p class="text-center">Click the button to add Books</p>
+  <div class="position-absolute top-50 start-50 translate-middle">
+    <div>
+      <div>
+        <table class="table table-warning table-striped">
+          <ol class="fs-2">
+            <thead>
+              <td> BookName </td>
+              <td> Price </td>
+            </thead>
+            <% @books.each do |book| %>
+              <tr>
+                <td><%= link_to book.name , book_path(book) %></td>
+                <td><%= book.price %></td>
+              </tr>
+            <% end %>
+          </ol>
+        </table>
+      </div>
+      <div class="center">
+        <%= button_to "Add New Book" , new_book_path,method:  :get,class:"btn-success  mt-4  border-0 p-2 rounded-pill" %>
+        <%= button_to "Add New Author" , new_author_path,method:  :get,class:"btn-warning  mt-4  border-0 p-2 rounded-pill" %>
+        <%= button_to "View all Authors", authors_path,method: :get,class:"btn-primary  mt-4  border-0 p-2 rounded-pill" %>
+      </div>
+    </div>
+  </div>

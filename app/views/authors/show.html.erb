@@ -1,0 +1,22 @@
+<%if flash[:notice] %>
+  <%flash.each do |name,msg| %>
+    <p class="text-center" style='color: green'><%= msg %></p>
+  <% end %>
+<% end %>
+<h1 class="text-center">About the Author</h1>
+<p class="text-center">Showing the Detailed Information of the Author</p>
+<h1 class="text-center">Author Name:<%=@author.firstname%> <%= @author.lastname %> ,ID:<%= @author.id %></h1>
+<h6 class="text-center">DOB: <%= @author.dob %> , Email: <%= @author.email %> </h2>
+<h2 class="center"> Published Books: <% @author.books.each do |book| %>
+    <h3>
+      <ul class="center">
+        <li ><%= book.name %></li>
+      </ul>
+    </h3>
+  <% end %>
+</h2>
+<div class="flex-row center" >
+  <%= button_to "Edit Author" , edit_author_path, method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <%= button_to "Delete Author", author_path, method: :delete,class:"btn-danger center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <%= button_to "View all Authors", authors_path,method: :get,class:"btn-warning center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+</div>

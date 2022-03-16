@@ -1,0 +1,25 @@
+<h1 class="text-center">New Book Form</h1>
+<p class="text-center">Add new Book by submitting the form</p>
+<%if flash[:errors] %>
+  <%flash[:errors].each do |error| %>
+    <p class="text-center" style='color: red'><%= error %></p>
+  <% end %>
+<% end %>
+<div class=" p-5" >
+  <%= form_for @book do |f| %>
+    <%= f.label :bookname %>
+    <%= f.text_field :name ,class:"col-12" %>
+    <br>
+    <%= f.label :price %>
+    <%= f.number_field :price ,class:"col-12" %>
+    <br>
+    <%= f.label :author %>
+    <br>
+    <%= f.select :author_id, Author.all.map { |t| [t.firstname+ " " +t.lastname, t.id]} %>
+    <br>
+    <div class="d-flex">
+      <%=f.submit class:"btn-success  mt-4  border-0 p-2 rounded-pill center" %> &nbsp;
+    <% end %>
+    <%= button_to "View all Books", books_path,method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %>
+  </div>
+</div>
