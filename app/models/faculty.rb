@@ -17,4 +17,5 @@ class Faculty < ApplicationRecord
       errors.add(:designation, "can't be #{designation} can only be 'Ass. Prof.' or 'Prof.'")
     end
   end
+
 end
