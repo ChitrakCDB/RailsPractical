@@ -20,6 +20,7 @@ class Student < ApplicationRecord
     end
   end
 
+
   before_validation  :DOB_validated_before
   after_validation  :DOB_validated
   after_create  :show_create

@@ -16,6 +16,7 @@ def designation_valid
   else
     errors.add(:designation, "can't be #{designation} can only be 'Ass. Prof.' or 'Prof.'")
   end
+
 end
 
 after_validation  :DOB_validated
