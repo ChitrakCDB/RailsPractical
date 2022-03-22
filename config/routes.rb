@@ -8,6 +8,8 @@ Rails.application.routes.draw do
   resources :products
   resources :authors
   resources :books
+  resources :students
+  resources :faculties
   #root 'products#index'
-  root 'authors#index'
+  root 'students#index'
 end

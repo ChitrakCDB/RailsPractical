@@ -1,0 +1,14 @@
+<% if flash[:notice] %>
+  <% flash.each do |name,msg| %>
+    <p class="text-center" style='color: green'><%= msg%></p>
+  <% end %>
+<% end %>
+<h1 class="text-center">About the Student</h1>
+<p class="text-center">Showing the Detailed Information of the Student</p>
+<h1 class="text-center">Student Name:<%= @student.firstname %> <%= @student.lastname %> </h1>
+<h6 class="text-center">DOB: <%= @student.DOB %> , Department: <%= @student.department %> </h2>
+<div class="flex-row center" >
+  <%= button_to "Edit Student" , edit_student_path, method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <%= button_to "Delete Student", student_path, method: :delete,class:"btn-danger center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <%= button_to "View all Students", students_path,method: :get,class:"btn-warning center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+</div>
