@@ -1,0 +1,38 @@
+<h1 class="text-center">New Employee Form</h1>
+<p class="text-center">Add new Employee by submitting the form</p>
+<% if flash[:errors] %>
+  <% flash[:errors].each do |error| %>
+    <p class="text-center" style='color: red'><%= error %></p>
+  <% end %>
+<% end %>
+<div class="p-5" >
+  <%= form_for @employee do |f|%>
+    <%= f.label :firstname %>
+    <%= f.text_field :firstname ,class:"col-12" %>
+    <br>
+    <%= f.label :lastname%>
+    <%= f.text_field :lastname ,class:"col-12" %>
+    <br>
+    <%= f.label :email%>
+    <%= f.text_field :email, class:"col-12" %>
+    <br>
+    <%= f.label :age%>
+    <br>
+    <%= f.number_field :age, class:"col-12" %>
+    <br>
+    <%= f.label :salary %>
+    <%= f.number_field :salary, step: 0.5, class:"col-12" %>
+    <br>
+    <%= f.label :no_of_order %>
+    <%= f.number_field :no_of_order, class:"col-12" %>
+    <div>
+      <%= f.label :full_time_available, class:"center" %>
+      <%= f.check_box :full_time_available, class:"col-12" %>
+      <div>
+        <div class="d-flex">
+          <%= f.submit class:"btn-success  mt-4  border-0 p-2 rounded-pill center" %> &nbsp;
+        <% end %>
+        <%= button_to "View all Employees", employees_path,method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %>
+      </div>
+    </div>
+  </div>
