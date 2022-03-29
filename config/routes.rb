@@ -4,10 +4,20 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
+  root 'employees#index'
+  post '/increaseOrder', to: "employees#increaseOrder"
+  post '/decreaseOrder', to: "employees#decreaseOrder"
   get '/users',to:"users#index"
+  get 'employees/queries'
   resources :products
   resources :authors
   resources :books
+  resources :students
+  resources :faculties
+  resources :employees
+
+  
   #root 'products#index'
-  root 'authors#index'
+  #root 'students#index'
+
 end

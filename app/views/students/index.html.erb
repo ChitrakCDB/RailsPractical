@@ -1,0 +1,33 @@
+<div>
+  <% if flash[:notice] %>
+    <% flash.each do |name,msg| %>
+      <p class="text-center" style='color: green'><%= msg %></p>
+    <% end %>
+  <% end %>
+  <h1 class="text-center">Students List</h1>
+  <p class="text-center">Click the button to add Students</p>
+  <div class="position-absolute top-50 start-50 translate-middle" >
+    <div>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+          <thead>
+            <td class="text-center"> Name </td>
+            <td class="text-center"> BirthDate </td>
+            <td class="text-center"> Department </td>
+          </thead>
+          <% @students.each do |student|%>
+            <tr>
+              <td><%= link_to student.firstname + " " + student.lastname, student_path(student) %></td>
+              <td><%= student.DOB %></td>
+              <td><%= student.department %></td>
+            </tr>
+          <% end %>
+        </ol>
+      </table>
+    </div>
+    <div class="center">
+      <%= button_to "Add New Student" , new_student_path,method:  :get,class:"btn-success  mt-4  border-0 p-2 rounded-pill" %>
+      <%= button_to "View all Faculties", faculties_path,method: :get,class:"btn-primary  mt-4  border-0 p-2 rounded-pill" %>
+    </div>
+  </div>
+</div>

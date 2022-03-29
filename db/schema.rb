@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_14_121414) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_23_064108) do
   create_table "authors", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
@@ -34,6 +34,29 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_121414) do
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
+  create_table "employees", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.string "email"
+    t.integer "age"
+    t.integer "no_of_order"
+    t.boolean "full_time_available"
+    t.float "salary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "faculties", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.integer "phone_num"
+    t.string "email"
+    t.date "DOB"
+    t.string "designation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "images", force: :cascade do |t|
     t.text "image"
     t.string "imageable_type"
@@ -47,6 +70,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_121414) do
     t.string "name"
     t.integer "price"
     t.string "brand"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.date "DOB"
+    t.string "department"
+    t.boolean "terms_of_usage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

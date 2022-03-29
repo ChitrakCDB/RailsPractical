@@ -1,0 +1,283 @@
+<div class=" top-50 start-50 center" >
+  <h1>Tasks</h1>
+  <h3 class="mt-4 mb-3"> Task 5 - employees having age > 20 and < 40 </h3>
+    <div>
+    <table class="table table-warning table-striped">
+      <ol class="fs-2">
+      <thead>
+        <td class="text-center"> Id </td>
+        <td class="text-center"> Name </td>
+        <td class="text-center"> Age </td>
+      </thead>
+      <% Employee.where("age > 20 and age <40").each do |e| %>
+        <tr>
+        <td class="text-center"> <%= e.id %> </td>
+        <td class="text-center"> <%= link_to e.firstname + " " + e.lastname, employee_path(e) %> </td>
+        <td class="text-center"> <%= e.age %> </td>
+        </tr>
+      <% end %>
+      </ol>
+    </table>
+    </div>
+    <h3 class="mt-4 mb-3"> Task 6 - employees which are full_time_available </h3>
+    <div>
+    <table class="table table-warning table-striped">
+      <ol class="fs-2">
+      <thead>
+        <td class="text-center"> Id </td>
+        <td class="text-center"> Name </td>
+        <td class="text-center"> Email </td>
+      </thead>
+      <% Employee.where("full_time_available = true").each do |e| %>
+        <tr>
+        <td class="text-center"> <%= e.id %> </td>
+        <td class="text-center"> <%= link_to e.firstname + " " + e.lastname, employee_path(e) %> </td>
+        <td class="text-center"> <%= e.email %> </td>
+        </tr>
+      <% end %>
+      </ol>
+    </table>
+    </div>
+    <h3 class="mt-4 mb-3"> Task 7 - employees which have exact 5 number of orders and age > 25 </h3>
+    <div>
+    <table class="table table-warning table-striped">
+      <ol class="fs-2">
+      <thead>
+        <td class="text-center"> Id </td>
+        <td class="text-center"> Name </td>
+        <td class="text-center"> Number Of Orders </td>
+        <td class="text-center"> Age </td>
+      </thead>
+      <% Employee.where("no_of_order = 5 and age > 25").each do |e| %>
+        <tr>
+        <td class="text-center"> <%= e.id %> </td>
+        <td class="text-center"> <%= link_to e.firstname + " " + e.lastname, employee_path(e) %> </td>
+        <td class="text-center"> <%= e.no_of_order %> </td>
+        <td class="text-center"> <%= e.age %> </td>
+        </tr>
+      <% end %>
+      </ol>
+    </table>
+    </div>
+    <h3 class="mt-4 mb-3"> Task 8 - employees which are created before today </h3>
+    <div>
+    <table class="table table-warning table-striped">
+      <ol class="fs-2">
+      <thead>
+        <td class="text-center"> Id </td>
+        <td class="text-center"> Name </td>
+        <td class="text-center"> Email </td>
+      </thead>
+      <% Employee.where("created_at < ?", 1.days.ago).each do |e| %>
+        <tr>
+        <td class="text-center"> <%= e.id %> </td>
+        <td class="text-center"> <%= link_to e.firstname + " " + e.lastname, employee_path(e) %> </td>
+        <td class="text-center"> <%= e.email %> </td>
+        </tr>
+      <% end %>
+      </ol>
+    </table>
+    </div>
+    <h3 class="mt-4 mb-3"> Task 9 - employees which have exact 5 number of orders Or age < 25 </h3>
+      <div>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+        <thead>
+          <td class="text-center"> Id </td>
+          <td class="text-center"> Name </td>
+          <td class="text-center"> Number Of Order </td>
+          <td class="text-center"> Age </td>
+        </thead>
+        <% Employee.where("no_of_order = 5 and age < 25").each do |e| %>
+          <tr>
+          <td class="text-center"> <%= e.id %> </td>
+          <td class="text-center"> <%= link_to e.firstname + " " + e.lastname, employee_path(e) %> </td>
+          <td class="text-center"> <%= e.no_of_order %> </td>
+          <td class="text-center"> <%= e.age %> </td>
+          </tr>
+        <% end %>
+        </ol>
+      </table>
+      </div>
+      <h3 class="mt-4 mb-3"> Task 10 - employees in descending order by age </h3>
+      <div>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+        <thead>
+          <td class="text-center"> Id </td>
+          <td class="text-center"> Name </td>
+          <td class="text-center"> Email </td>
+          <td class="text-center"> Age </td>
+        </thead>
+        <% Employee.order("age DESC").each do |e| %>
+          <tr>
+          <td class="text-center"> <%= e.id %> </td>
+          <td class="text-center"> <%= link_to e.firstname + " " + e.lastname, employee_path(e) %> </td>
+          <td class="text-center"> <%= e.email %> </td>
+          <td class="text-center"> <%= e.age %> </td>
+          </tr>
+        <% end %>
+        </ol>
+      </table>
+      </div>
+      <h3 class="mt-4 mb-3"> Task 11 - employees in ascending order by number of order </h3>
+      <div>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+        <thead>
+          <td class="text-center"> Id </td>
+          <td class="text-center"> Name </td>
+          <td class="text-center"> Email </td>
+          <td class="text-center"> Age </td>
+          <td class="text-center"> Number Of Orders </td>
+        </thead>
+        <% Employee.order("no_of_order ASC").each do |e| %>
+          <tr>
+          <td class="text-center"> <%= e.id %> </td>
+          <td class="text-center"> <%= link_to e.firstname + " " + e.lastname, employee_path(e) %> </td>
+          <td class="text-center"> <%= e.email %> </td>
+          <td class="text-center"> <%= e.age %> </td>
+          <td class="text-center"> <%= e.no_of_order %> </td>
+          </tr>
+        <% end %>
+        </ol>
+      </table>
+      </div>
+      <h3 class="mt-4 mb-3"> Task 12 - employees having salary > 45000 </h3>
+      <div>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+        <thead>
+          <td class="text-center"> Id </td>
+          <td class="text-center"> Name </td>
+          <td class="text-center"> Email </td>
+          <td class="text-center"> Salary </td>
+        </thead>
+        <% Employee.where("salary > 45000").each do |e| %>
+          <tr>
+          <td class="text-center"> <%= e.id %> </td>
+          <td class="text-center"> <%= link_to e.firstname + " " + e.lastname, employee_path(e) %> </td>
+          <td class="text-center"> <%= e.email %> </td>
+          <td class="text-center"> <%= e.salary %> </td>
+          </tr>
+        <% end %>
+        </ol>
+      </table>
+      </div>
+      <h3 class="mt-4 mb-3"> Task 13 - Group employees by no_of_order with them and display employees with no_of_order > 5
+      </h3>
+      <div>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+        <thead>
+          <td class="text-center"> Id </td>
+          <td class="text-center"> Name </td>
+          <td class="text-center"> Email </td>
+          <td class="text-center"> Number of Order </td>
+        </thead>
+        <% Employee.group("no_of_order").having("no_of_order > ?",5).each do |e| %>
+          <tr>
+          <td class="text-center"> <%= e.id %> </td>
+          <td class="text-center"> <%= link_to e.firstname + " " + e.lastname, employee_path(e) %> </td>
+          <td class="text-center"> <%= e.email %> </td>
+          <td class="text-center"> <%= e.no_of_order %> </td>
+          </tr>
+        <% end %>
+        </ol>
+      </table>
+      </div>
+      <h3 class="mt-4 mb-3"> Task 14 - employees in descending order by age with unscope </h3>
+      <div>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+        <thead>
+          <td class="text-center"> Id </td>
+          <td class="text-center"> Name </td>
+          <td class="text-center"> Email </td>
+          <td class="text-center"> Age </td>
+        </thead>
+        <% Employee.order("age DESC").limit(5).unscope(:limit).each do |e| %>
+          <tr>
+          <td class="text-center"> <%= e.id %> </td>
+          <td class="text-center"> <%= link_to e.firstname + " " + e.lastname, employee_path(e) %> </td>
+          <td class="text-center"> <%= e.email %> </td>
+          <td class="text-center"> <%= e.age %> </td>
+          </tr>
+        <% end %>
+        </ol>
+      </table>
+      </div>
+      <h3 class="mt-4 mb-3"> Task 14 - employees reverse order by number of order </h3>
+      <div>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+        <thead>
+          <td class="text-center"> Id </td>
+          <td class="text-center"> Name </td>
+          <td class="text-center"> Email </td>
+          <td class="text-center"> Age </td>
+          <td class="text-center"> Number Of Orders </td>
+        </thead>
+        <% Employee.where('no_of_order > 10').order('no_of_order').reverse_order.each do |e| %>
+          <tr>
+          <td class="text-center"> <%= e.id %> </td>
+          <td class="text-center"> <%= link_to e.firstname + " " + e.lastname, employee_path(e) %> </td>
+          <td class="text-center"> <%= e.email %> </td>
+          <td class="text-center"> <%= e.age %> </td>
+          <td class="text-center"> <%= e.no_of_order %> </td>
+          </tr>
+        <% end %>
+        </ol>
+      </table>
+      </div>
+      <h3 class="mt-4 mb-3"> Task 14 - employees re order by number of order </h3>
+      <div>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+        <thead>
+          <td class="text-center"> Id </td>
+          <td class="text-center"> Name </td>
+          <td class="text-center"> Email </td>
+          <td class="text-center"> Age </td>
+          <td class="text-center"> Number Of Orders </td>
+        </thead>
+        <% Employee.reorder('no_of_order DESC').each do |e| %>
+          <tr>
+          <td class="text-center"> <%= e.id %> </td>
+          <td class="text-center"> <%= link_to e.firstname + " " + e.lastname, employee_path(e) %> </td>
+          <td class="text-center"> <%= e.email %> </td>
+          <td class="text-center"> <%= e.age %> </td>
+          <td class="text-center"> <%= e.no_of_order %> </td>
+          </tr>
+        <% end %>
+        </ol>
+      </table>
+      </div>
+      <h3 class="mt-4 mb-3"> Task 14 - employees only by number of order </h3>
+      <div>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+        <thead>
+          <td class="text-center"> Id </td>
+          <td class="text-center"> Name </td>
+          <td class="text-center"> Email </td>
+          <td class="text-center"> Age </td>
+          <td class="text-center"> Number Of Orders </td>
+        </thead>
+        <% Employee.where('no_of_order > 10').order('no_of_order desc').only(:order).each do |e| %>
+          <tr>
+          <td class="text-center"> <%= e.id %> </td>
+          <td class="text-center"> <%= link_to e.firstname + " " + e.lastname, employee_path(e) %> </td>
+          <td class="text-center"> <%= e.email %> </td>
+          <td class="text-center"> <%= e.age %> </td>
+          <td class="text-center"> <%= e.no_of_order %> </td>
+          </tr>
+        <% end %>
+        </ol>
+      </table>
+      </div>
+    </div>
+    <div class="center">
+      <%= button_to "Go To Index" , employees_path,method: :get,class:"btn-success mt-4 border-0 p-2 rounded-pill" %>
+    </div>
+</div>

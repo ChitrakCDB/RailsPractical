@@ -1,0 +1,37 @@
+<div>
+  <% if flash[:notice] %>
+    <% flash.each do |name,msg| %>
+      <p class="text-center" style='color: green'><%= msg %></p>
+    <% end %>
+  <% end %>
+  <h1 class="text-center">Faculties List</h1>
+  <p class="text-center">Click the button to add Faculties</p>
+  <div class="position-absolute top-50 start-50 translate-middle" >
+    <div>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+          <thead>
+            <td class="text-center"> Name </td>
+            <td class="text-center"> Designation </td>
+            <td class="text-center"> BirthDate </td>
+            <td class="text-center"> E-mail </td>
+            <td class="text-center"> Phone Number </td>
+          </thead>
+          <% @faculties.each do |faculty|%>
+            <tr>
+              <td><%= link_to (faculty.firstname + " " + faculty.lastname), faculty_path(faculty) %></td>
+              <td><%= faculty.designation %></td>
+              <td><%= faculty.DOB %></td>
+              <td><%= faculty.email %></td>
+              <td><%= faculty.phone_num %></td>
+            </tr>
+          <% end %>
+        </ol>
+      </table>
+    </div>
+    <div class="center">
+      <%= button_to "Add New Faculty" , new_faculty_path,method:  :get,class:"btn-success  mt-4  border-0 p-2 rounded-pill" %>
+      <%= button_to "View all Students", students_path,method: :get,class:"btn-primary  mt-4  border-0 p-2 rounded-pill" %>
+    </div>
+  </div>
+</div>
