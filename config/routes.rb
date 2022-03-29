@@ -15,9 +15,6 @@ Rails.application.routes.draw do
   resources :students
   resources :faculties
   resources :employees
-
-  
   #root 'products#index'
   #root 'students#index'
-
 end

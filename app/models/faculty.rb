@@ -58,5 +58,4 @@ class Faculty < ApplicationRecord
   def DOB_validated
     puts "==>DOB validated Successfully in Faculties"
   end
-
 end

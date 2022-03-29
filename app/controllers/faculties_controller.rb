@@ -31,7 +31,6 @@ class FacultiesController < ApplicationController
     if @faculty.update(params.require(:faculty).permit(:firstname, :lastname, :phone_num, :email, :DOB, :designation))
       flash[:notice] = "Successfully Updated Faculty"
       redirect_to faculty_path(@faculty)
-    
     else
       flash[:errors] = @faculty.errors.full_messages
       redirect_to edit_faculty_path
