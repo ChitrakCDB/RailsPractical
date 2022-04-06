@@ -18,10 +18,8 @@ Rails.application.routes.draw do
   resources :books
   resources :students
   resources :faculties
-  resources :employees
-
-  
+  resources :employees  
   root 'myproducts#index'
+  #root 'products#index'
   #root 'students#index'
-
 end
