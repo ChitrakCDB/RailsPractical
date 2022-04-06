@@ -1,0 +1,94 @@
+<div>
+  <% if flash[:errors] %>
+  <% flash.each do |name,msg| %>
+    <p class="text-center" style='color: green'><%= msg %></p>
+  <% end %>
+  <% end %>
+  <h1 class="text-center">Orders List</h1>
+  <p class="text-center">Click the button to add Orders</p>
+  <div class="top-50 start-50 center" >
+  <% if flash[:notice] %>
+    <% flash.each do |name,message| %>
+    <p class="text-danger"><%= message%></p>
+    <% end %>
+  <% end %>
+  <form class="d-flex mb-3">
+    <%= form_tag orders_path, method: :get do %>
+    <%= text_field_tag :searchParam, params[:searchParam], class: "form-control me-2"%>
+    <%= submit_tag "search", class:"btn btn-outline-success"%>
+    <% end %>
+  </form>
+  <div>
+    <div class="top-50 start-50 center mb-3" >
+    <div>
+      <table class="table table-warning table-striped">
+      <ol class="fs-2">
+        <thead>
+        <td class="text-center"> OrderID </td>
+        <td class="text-center"> CustomerName </td>
+        <td class="text-center"> CustomerMail </td>
+        <td class="text-center"> CustomerPhone </td>
+        <td class="text-center"> ProductName </td>
+        <td class="text-center"> ProductPrice </td>
+        <td class="text-center"> Quantity </td>
+        <td class="text-center"> TotalPrice </td>
+        <td class="text-center"> Status </td>
+        <td class="text-center" colspan=3> Actions </td>
+        </thead>
+        <% @orders.each do |order|%>
+        <tr>
+          <td><%= order.id %></td>
+          <td><%= order.customer.fname + " " + order.customer.lname %></td>
+          <td><%= order.customer.email %></td>
+          <td><%= order.customer.phone %></td>
+          <td><%= order.myproduct.title %></td>
+          <td><%= order.myproduct.price %></td>
+          <td><%= order.quantity %></td>
+          <td><%= order.total_price %></td>
+          <td><%= order.status %></td>
+          <td><%= button_to "Edit" , edit_order_path(order), method: :get,class:"btn-primary center border-0 p-2 rounded-pill" %> &nbsp;</td>
+          <td><%= button_to "Delete", order_path(order), method: :delete,class:"btn-danger center border-0 p-2 rounded-pill" %> &nbsp;</td>
+          <td><%= button_to "Show", order_path(order),method: :get,class:"btn-warning center border-0 p-2 rounded-pill" %> &nbsp;</td>
+        </tr>
+        <% end %>
+      </ol>
+      </table>
+    </div>
+    <div class="d-flex mb-3">
+      <%= button_to "Add New Order" , new_order_path,method:  :get,class:"btn-success  mt-4  me-4 border-0 p-2 rounded-pill" %>
+      <%= button_to "View Products", myproducts_path,method: :get,class:"btn-primary  mt-4  me-4 border-0 p-2 rounded-pill" %>
+      <%= button_to "View Customers", customers_path,method: :get,class:"btn-warning  mt-4  me-4 border-0 p-2 rounded-pill" %>
+      <%= button_to "View Filtered Data", orders_root_path,method: :get,class:"btn-danger  mt-4  me-4 border-0 p-2 rounded-pill" %>
+    </div>
+    <h1 class="text-center mb-3">Searched Product List</h1>
+    <div class="top-50 start-50 center" >
+      <div>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+        <thead>
+          <td class="text-center"> OrderID </td>
+          <td class="text-center"> ProductName </td>
+          <td class="text-center"> Quantity </td>
+          <td class="text-center"> TotalPrice </td>
+          <td class="text-center"> Status </td>
+          <td class="text-center" colspan=3> Actions </td>
+        </thead>
+        <% if @searchorder_id %>
+          <% @searchorder_id.each do |order|%>
+          <tr>
+            <td><%= order.id %></td>
+            <td><%= order.myproduct.title %></td>
+            <td><%= order.quantity %></td>
+            <td><%= order.total_price %></td>
+            <td><%= order.status %></td>
+            <td><%= button_to "Edit" , edit_order_path(order), method: :get,class:"btn-primary center border-0 p-2 rounded-pill" %> &nbsp;</td>
+            <td><%= button_to "Delete", order_path(order), method: :delete,class:"btn-danger center border-0 p-2 rounded-pill" %> &nbsp;</td>
+            <td><%= button_to "Show", order_path(order),method: :get,class:"btn-warning center border-0 p-2 rounded-pill" %> &nbsp;</td>
+          </tr>
+          <% end %>
+        <% end %>
+        </ol>
+      </table>
+      </div>
+   </div>
+</div>

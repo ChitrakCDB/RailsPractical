@@ -10,7 +10,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_23_064108) do
+
+ActiveRecord::Schema[7.0].define(version: 2022_03_31_061313) do
 
   create_table "authors", force: :cascade do |t|
     t.string "firstname"
@@ -33,6 +34,15 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_23_064108) do
     t.datetime "updated_at", null: false
     t.integer "author_id", null: false
     t.index ["author_id"], name: "index_books_on_author_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "fname"
+    t.string "lname"
+    t.string "email"
+    t.integer "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "employees", force: :cascade do |t|
@@ -65,6 +75,29 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_23_064108) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable"
+  end
+
+  create_table "myproducts", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.integer "price"
+    t.integer "capacity"
+    t.boolean "is_active"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "quantity"
+    t.integer "status"
+    t.integer "total_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "customer_id"
+    t.integer "myproduct_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["myproduct_id"], name: "index_orders_on_myproduct_id"
   end
 
   create_table "products", force: :cascade do |t|

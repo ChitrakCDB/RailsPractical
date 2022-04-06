@@ -1,0 +1,91 @@
+<div class=" top-50 start-50 center" >
+  <h1>Tasks</h1>
+  <h3 class="mt-4 mb-3"> most sales product by quantity </h3>
+  <div>
+  <table class="table table-warning table-striped">
+    <ol class="fs-2">
+    <thead>
+      <td class="text-center"> CustomerName </td>
+      <td class="text-center"> TotalQuantity </td>
+      <td class="text-center"> CustomerPhone </td>
+      <td class="text-center"> CustomerMail </td>
+    </thead>
+    <% @topinQuantity.each do |e| %>
+      <tr>
+      <td class="text-center"> <%= e.customer.fname %> </td>
+      <td class="text-center"> <%= e.Sum_of_Quantity %> </td>
+      <td class="text-center"> <%= e.customer.phone%> </td>
+      <td class="text-center"> <%= e.customer.email%> </td>
+      </tr>
+    <% end %>
+    </ol>
+  </table>
+  </div>
+  <div class=" top-50 start-50 center" >
+  <h1>Tasks</h1>
+  <h3 class="mt-4 mb-3"> most sales product by price </h3>
+  <div>
+    <table class="table table-warning table-striped">
+    <ol class="fs-2">
+      <thead>
+      <td class="text-center"> CustomerName </td>
+      <td class="text-center"> TotalPrice </td>
+      <td class="text-center"> CustomerPhone </td>
+      <td class="text-center"> CustomerMail </td>
+      </thead>
+      <% @topinPrice.each do |e| %>
+      <tr>
+        <td class="text-center"> <%= e.customer.fname %> </td>
+        <td class="text-center"> <%= e.Sum_of_Price %> </td>
+        <td class="text-center"> <%= e.customer.phone%> </td>
+        <td class="text-center"> <%= e.customer.email%> </td>
+      </tr>
+      <% end %>
+    </ol>
+    </table>
+    <h3 class="mt-4 mb-3"> top 5 customer who has maximum booked orders  </h3>
+    <div>
+    <table class="table table-warning table-striped">
+      <ol class="fs-2">
+      <thead>
+        <td class="text-center"> Total Booked Orders </td>
+        <td class="text-center"> Name </td>
+        <td class="text-center"> Email </td>
+        <td class="text-center"> Phone </td>
+      </thead>
+      <% Order.group(:customer_id).where(status:0).each do |o| %>
+        <tr>
+        <td class="text-center"> <%= Order.where(customer_id:o.customer_id).where(status:0).count %> </td>
+        <td class="text-center"> <%= o.customer.fname + " " + o.customer.lname %> </td>
+        <td class="text-center"> <%= o.customer.email %> </td>
+        <td class="text-center"> <%= o.customer.phone %> </td>
+        </tr>
+      <% end %>
+      </ol>
+    </table>
+    </div>
+        <h3 class="mt-4 mb-3"> top 5 customer who has maximum Cancelled orders  </h3>
+    <div>
+    <table class="table table-warning table-striped">
+      <ol class="fs-2">
+      <thead>
+        <td class="text-center"> Total Cancelled Orders </td>
+        <td class="text-center"> Name </td>
+        <td class="text-center"> Email </td>
+        <td class="text-center"> Phone </td>
+      </thead>
+      <% Order.group(:customer_id).where(status:1).each do |o| %>
+        <tr>
+        <td class="text-center"> <%= Order.where(customer_id:o.customer_id).where(status:1).count %> </td>
+        <td class="text-center"> <%= o.customer.fname + " " + o.customer.lname %> </td>
+        <td class="text-center"> <%= o.customer.email %> </td>
+        <td class="text-center"> <%= o.customer.phone %> </td>
+        </tr>
+      <% end %>
+      </ol>
+    </table>
+    </div>
+    <div class="center">
+     <%= button_to "View All Orders", orders_path,method: :get,class:"btn-danger  mt-4 me-4 border-0 p-2 rounded-pill" %>
+    </div>
+</div>

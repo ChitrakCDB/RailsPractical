@@ -1,0 +1,45 @@
+<div>
+  <% if flash[:notice] %>
+    <% flash.each do |name,msg| %>
+      <p class="text-center" style='color: green'><%= msg %></p>
+    <% end %>
+  <% end %>
+  <h1 class="text-center">Products List</h1>
+  <p class="text-center">Click the button to add Products</p>
+  <div class="top-50 start-50 center" >
+    <div>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+          <thead>
+            <td class="text-center"> Title </td>
+            <td class="text-center"> Price </td>
+            <td class="text-center"> Capacity </td>
+            <td class="text-center"> Status </td>
+            <td class="text-center"> ActiveStatus </td>
+            <td class="text-center"> OrderCount </td>
+            <td class="text-center" colspan=3> Actions </td>
+          </thead>
+          <% @myproducts.each do |myproduct|%>
+            <tr>
+              <td><%= link_to myproduct.title, myproduct_path(myproduct) %></td>
+              <td><%= myproduct.price %></td>
+              <td><%= myproduct.capacity %></td>
+              <td><%= myproduct.status %></td>
+              <td><%= myproduct.is_active %></td>
+              <td><%= myproduct.orders.count %></td>
+              <td><%= button_to "Edit" , edit_myproduct_path(myproduct), method: :get,class:"btn-primary center border-0 p-2 rounded-pill" %> &nbsp;</td>
+              <td><%= button_to "Delete", myproduct_path(myproduct), method: :delete,class:"btn-danger center border-0 p-2 rounded-pill" %> &nbsp;</td>
+              <td><%= button_to "Show", myproduct_path(myproduct),method: :get,class:"btn-warning center border-0 p-2 rounded-pill" %> &nbsp;</td>
+            </tr>
+          <% end %>
+        </ol>
+      </table>
+    </div>
+    <div class="d-flex">
+      <%= button_to "Add New Product" , new_myproduct_path,method:  :get,class:"btn-success  mt-4 me-4 border-0 p-2 rounded-pill" %>
+      <%= button_to "View Default Scope", myproducts_defaultscopeview_path,method: :get,class:"btn-primary  mt-4 me-4 border-0 p-2 rounded-pill" %>
+      <%= button_to "View All Customers", customers_path,method: :get,class:"btn-warning  mt-4 me-4 border-0 p-2 rounded-pill" %>
+      <%= button_to "View All Orders", orders_path,method: :get,class:"btn-danger  mt-4 me-4 border-0 p-2 rounded-pill" %>
+    </div>
+  </div>
+</div>
