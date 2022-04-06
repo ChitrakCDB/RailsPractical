@@ -1,0 +1,29 @@
+<div class="top-50 start-50 center" >
+  <div>
+    <table class="table table-warning table-striped">
+      <ol class="fs-2">
+        <thead>
+          <td class="text-center"> Title </td>
+          <td class="text-center"> Price </td>
+          <td class="text-center"> Capacity </td>
+          <td class="text-center"> Status </td>
+          <td class="text-center"> ActiveStatus </td>
+          <td class="text-center"> OrderCount </td>
+        </thead>
+        <% @myproductscope.each do |myproduct|%>
+          <tr>
+            <td><%= link_to myproduct.title, myproduct_path(myproduct) %></td>
+            <td><%= myproduct.price %></td>
+            <td><%= myproduct.capacity %></td>
+            <td><%= myproduct.status %></td>
+            <td><%= myproduct.is_active %></td>
+            <td><%= myproduct.orders.count %></td>
+          </tr>
+        <% end %>
+      </ol>
+    </table>
+    <div class="center">
+      <%= button_to "Go To Product Home", myproducts_path,method: :get,class:"btn-primary  mt-4  border-0 p-2 rounded-pill" %>
+    </div>
+  </div>
+</div>
