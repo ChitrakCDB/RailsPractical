@@ -1,0 +1,37 @@
+<%if flash[:errors] %>
+  <%flash.each do |name,msg| %>
+    <p class="text-center" style='color: green'><%= msg %></p>
+  <% end %>
+<% end %>
+<h1 class="text-center">Your Profile</h1>
+<p class="text-center">Showing the Detailed Information of the User</p>
+<h1 class="text-center">User Name:<%=current_myuser.username%> Address:<%=current_myuser.address.myuser_address%></h1>
+<h1 class="text-center">Enrolled Events List</h1>
+<div class="top-50 start-50 center" >
+  <div>
+    <% if current_myuser %>
+      <p class="text-center">You are Logged In as,<strong> <%= current_myuser.username %></strong></p>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+          <thead>
+            <td class="text-center"> EventName </td>
+            <td class="text-center"> Date </td>
+            <td class="text-center"> Description </td>
+            <td class="text-center"> CreatedBy </td>
+            <td class="text-center"> Categories </td>
+          </thead>
+          <% @myuser.enrolled_users.each do |enroll|%>
+            <tr>
+              <td><%= enroll.event.name %></td>
+              <td><%= enroll.event.event_date %></td>
+              <td><%= enroll.event.description %></td>
+              <td><%= enroll.event.myuser.username %></td>
+              <td><%= enroll.event.category.name %></td>
+            </tr>
+          <% end %>
+        </ol>
+      </table>
+    <% end %>
+    <div class="center">
+      <%= button_to "View all Events", events_path,method: :get,class:"btn-warning center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+    </div>

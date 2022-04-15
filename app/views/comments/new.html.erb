@@ -1,0 +1,14 @@
+<h1 class="text-center">Add Comment</h1>
+<p class="text-center">Add new Comment by Clicking submit</p>
+
+<div class=" p-5" >
+  <%= form_with(model: [@event, @comment])  do |f| %>
+    <%= f.hidden_field :myuser_id, value: current_myuser.id %>
+    <%= f.hidden_field :event_id, value: @event.id %>
+    <%= f.label :content %>
+    <%= f.text_field :content ,class:"col-12 "%>
+    <div class="d-flex">
+      <%=f.submit class:"btn-success  mt-4  border-0 p-2 rounded-pill center"%> &nbsp;
+    <% end %>
+    <%= button_to "View all Events", events_path, method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %>
+  </div>

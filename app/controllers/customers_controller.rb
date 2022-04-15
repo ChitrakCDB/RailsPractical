@@ -16,7 +16,6 @@ class CustomersController < ApplicationController
       flash[:errors]=@customer.errors.full_messages
       redirect_to new_customer_path
     end
-
   end
 
   def show
