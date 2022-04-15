@@ -1,5 +1,4 @@
 class ApplicationController < ActionController::Base
-    #before_action :authorized
     helper_method :current_myuser
     helper_method :logged_in?
     def current_myuser
@@ -10,7 +9,4 @@ class ApplicationController < ActionController::Base
         !current_myuser.nil?
     end
 
-    # def authorized
-    #     redirect_to welcome_path unless logged_in?
-    # end
 end
