@@ -1,6 +1,5 @@
 class EventsController < ApplicationController
   def index
-    #@events = Event.all
     @events = Event.order(event_date: :desc)
     @events= Event.where('category_id=?',params[:search]) if params[:search] 
   end
