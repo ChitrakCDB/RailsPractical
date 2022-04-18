@@ -1,0 +1,90 @@
+<div>
+  <% if flash[:errors] %>
+    <% flash.each do |name,msg| %>
+      <p class="text-center" style='color: green'><%= msg %></p>
+    <% end %>
+  <% end %>
+  <h1 class="text-center">Events List</h1>
+  <p class="text-center">Click the button to add Events</p>
+  <div class="top-50 start-50 center" >
+    <div class="flex-row center">
+      <%= form_tag(events_path, method: :get) do %>
+        <%= select_tag(:search, options_for_select(Category.all.map { |t| [t.name, t.id]})) %>
+        <%= submit_tag "search", class:"btn btn-outline-success"%>
+      <% end %>
+      <%= button_to "Clear Filter", events_path, method: :get,class:"btn ms-2 btn-outline-danger"%>
+    </div>
+    <div>
+      <% if current_myuser %>
+        <p class="text-center">You are Logged In as,<strong> <%= current_myuser.username %></strong></p>
+        <table class="table table-warning table-striped">
+          <ol class="fs-2">
+            <thead>
+              <td class="text-center"> EventName </td>
+              <td class="text-center"> Date </td>
+              <td class="text-center"> Description </td>
+              <td class="text-center"> CreatedBy </td>
+              <td class="text-center"> Categories </td>
+              <td class="text-center" colspan=3> Actions </td>
+            </thead>
+            <% @events.each do |event|%>
+              <tr>
+                <td><%= event.name %></td>
+                <td><%= event.event_date %></td>
+                <td><%= event.description %></td>
+                <td><%= event.myuser.username %></td>
+                <td><%= event.category.name %></td>
+                <% if logged_in?%>
+                  <td><%= button_to "Show", event_path(event),method: :get,class:"btn-warning center border-0 p-2 rounded-pill" %> &nbsp;</td>
+                  <% if EnrolledUser.where("myuser_id=? and event_id=?",current_myuser.id,event.id).blank?%>
+                    <td><%= button_to "Enroll" , myuser_path(id:session[:myuser_id]),params: {event_id: event.id}, method: :get,class:"btn-success center border-0 p-2 rounded-pill" %> &nbsp;</td>
+                  <% else %>
+                    <td><%= button_to "Unenroll",myusers_unenroll_path,params: {event_id: event.id},method: :get,class:"btn-danger center border-0 p-2 rounded-pill"%>
+                    <% end %>
+                  <% else %>
+                    <td><%= button_to "Edit" , edit_event_path(event), method: :get,class:"btn-primary center border-0 p-2 rounded-pill" %> &nbsp;</td>
+                    <td><%= button_to "Delete", event_path(event), method: :delete,class:"btn-danger center border-0 p-2 rounded-pill" %> &nbsp;</td>
+                  <% end %>
+                </tr>
+              <% end %>
+            </ol>
+          </table>
+          <div class="flex-row center">
+            <%= button_to "Add New Event" , new_event_path,method:  :get,class:"btn-success  mt-4 me-4 border-0 p-2 rounded-pill" %>
+            <%= button_to "Logout", logout_path, method: :delete,class:"btn-danger center mt-4 me-4 border-0 p-2 rounded-pill"%>
+            <%= button_to "My Profile", myuser_path(current_myuser.id), method: :get,class:"btn-primary center mt-4 me-4 border-0 p-2 rounded-pill"%>
+            <%= button_to "Categories", categories_path(current_myuser.id), method: :get,class:"btn-warning center mt-4 me-4 border-0 p-2 rounded-pill"%>
+            <%#= button_to "Enroll", myusers_enroll_path(current_myuser.id), method: :get,class:"btn-warning center mt-4 me-4 border-0 p-2 rounded-pill"%>
+          </div>
+        <% end %>
+      </div>
+      <div>
+        <% if current_myuser == nil %>
+          <table class="table table-warning table-striped">
+            <ol class="fs-2">
+              <thead>
+                <td class="text-center"> EventName </td>
+                <td class="text-center"> Date </td>
+                <td class="text-center"> Description </td>
+                <td class="text-center"> CreatedBy </td>
+                <td class="text-center"> Categories </td>
+              </thead>
+              <% @events.each do |event|%>
+                <tr>
+                  <td><%= event.name %></td>
+                  <td><%= event.event_date %></td>
+                  <td><%= event.description %></td>
+                  <td><%= event.myuser.username %></td>
+                  <td><%= event.category.name %> &nbsp;</td>
+                </tr>
+              <% end %>
+            </ol>
+          </table>
+          <div class="flex-row center" >
+            <%= button_to "Login", login_path, method: :get,class:"btn-primary center mt-4 me-4 border-0 p-2 rounded-pill"%>
+            <%= button_to "Sign Up", new_myuser_path, method: :get,class:"btn-warning center mt-4 me-4 border-0 p-2 rounded-pill"%>
+          </div>
+        <% end %>
+      </div>
+    </div>
+</div>

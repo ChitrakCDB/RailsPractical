@@ -1,0 +1,27 @@
+<h1 class="text-center">Edit Event Form</h1>
+<p class="text-center">Edit Event by submitting the form</p>
+<%if flash[:errors] %>
+  <%flash[:errors].each do |error| %>
+    <p class="text-center" style='color: red'><%= error %></p>
+  <% end %>
+<% end %>
+<div class=" p-5" >
+  <%= form_for @event do |f| %>
+    <%= f.label :name %>
+    <%= f.text_field :name ,class:"col-12 "%>
+    <br>
+    <%= f.label :description %>
+    <%= f.text_field :description ,class:"col-12 "%>
+    <br>
+    <%= f.label :EventDate %>
+    <br>
+    <%= f.date_select :event_date, start_year: 1800, end_year: Time.now.year %>
+    <br>
+    <%= f.label :SelectCategory %>
+    <%= f.select :category_id, Category.all.map { |t| [t.name, t.id]} %>
+    <div class="d-flex">
+      <%=f.submit class:"btn-success  mt-4  border-0 p-2 rounded-pill center"%> &nbsp;
+    <% end %>
+    <%= button_to "View all Events", events_path,method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %>
+  </div>
+</div>

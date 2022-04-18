@@ -1,0 +1,13 @@
+<%if flash[:errors] %>
+  <%flash.each do |name,msg| %>
+    <p class="text-center" style='color: green'><%= msg %></p>
+  <% end %>
+<% end %>
+<h1>Login</h1>
+   <%= form_tag login_path do %>
+   <%= label_tag :username%>
+   <%= text_field_tag :username %>
+   <%= label_tag :password%>
+   <%= password_field_tag :password%>
+   <%= submit_tag "Login",  class:"btn btn-outline-success"%>
+<%end%>

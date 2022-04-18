@@ -1,0 +1,42 @@
+<%if flash[:errors] %>
+  <%flash.each do |name,msg| %>
+    <p class="text-center" style='color: green'><%= msg %></p>
+  <% end %>
+<% end %>
+<h1 class="text-center">About the Event</h1>
+<p class="text-center">Showing the Detailed Information of the Event</p>
+<h1 class="text-center">Event Name:<%=@event.name%> ,CreatedBy: <%=@event.myuser.username%></h1>
+<h6 class="text-center">Date Of Event: <%= @event.event_date %></h2>
+<p class="text-center">Description: <%= @event.description %></p>
+<div class="flex-row center" >
+  <% if current_myuser.id == @event.myuser_id && logged_in? %>
+    <%= button_to "Edit Event" , edit_event_path, method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+    <%= button_to "Delete Event", event_path, method: :delete,class:"btn-danger center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <% end %>
+</div>
+<br>
+<div>
+  <table class="table  table-striped mt-2">
+    <thead>
+      <td>Username </td>
+      <td>Comments </td>
+    </thead>
+    <% @event.comments.each do |comment| %>
+      <tr>
+        <td><%= comment.myuser.username %>:</td>
+        <td><%= comment.content %> </td>
+        <% if current_myuser.id == comment.myuser_id && logged_in? %>
+          <td><%= button_to "Edit Comment", edit_event_comment_path(@event,comment),method: :get,class:"btn-success center me-2 mt-4 border-0 p-2 rounded-pill" %></td>
+          <td><%= button_to "Delete Comment",event_comment_path(@event,comment),method: :delete,class:"btn-warning center mt-4 border-0 p-2 rounded-pill" %> </td>
+        <% end %>
+        <td><%= button_to "LIKE", like_event_comment_path(:event_id => @event.id, :comment_id => comment.id),method: :post, class:"btn-info center mt-4 border-0 p-2 rounded-pill" %>
+          <%= comment.likes %> likes  </td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<br>
+<div class="flex-row center">
+  <%= button_to "Add Comment", new_event_comment_path(@event),method: :get,class:"btn-success center me-2 mt-4 border-0 p-2 rounded-pill" %>
+  <%= button_to "View all Events", events_path,method: :get,class:"btn-warning center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+</div>

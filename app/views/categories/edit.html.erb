@@ -1,0 +1,19 @@
+<h1 class="text-center">Update Category Form</h1>
+<p class="text-center">Edit Category by submitting the form</p>
+<%if flash[:errors] %>
+  <%flash[:errors].each do |error| %>
+    <p class="text-center" style='color: red'><%= error %></p>
+  <% end %>
+<% end %>
+<div class=" p-5" >
+  <%= form_for @category do |f| %>
+    <%= f.hidden_field :myuser_id, value: current_myuser.id %>
+    <%= f.label :name %>
+    <%= f.text_field :name ,class:"col-12 "%>
+    <br>
+    <div class="d-flex">
+      <%=f.submit class:"btn-success  mt-4  border-0 p-2 rounded-pill center"%> &nbsp;
+    <% end %>
+    <%= button_to "View all Categories", categories_path,method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %>
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<div>
+  <% if flash[:notice] %>
+  <% flash.each do |name,msg| %>
+    <p class="text-center" style='color: green'><%= msg %></p>
+  <% end %>
+  <% end %>
+  <h1 class="text-center">Events List</h1>
+  <p class="text-center">Click the button to add Events</p>
+  <div class="top-50 start-50 center" >
+  <div>
+    <% if current_myuser %>
+    <p class="text-center">You are Logged In as,<strong> <%= current_myuser.username %></strong></p>
+    <table class="table table-warning table-striped">
+      <ol class="fs-2">
+      <thead>
+        <td class="text-center"> CategoryName </td>
+        <td class="text-center"> CreatedBy </td>
+        <td class="text-center" colspan=3> Actions </td>
+      </thead>
+      <% @categories.each do |category|%>
+        <tr>
+        <td><%= category.name %></td>
+        <td><%= category.myuser.username %></td>
+        <td><%=  %></td>
+        <% if current_myuser.id == category.myuser_id %>
+          <td><%= button_to "Edit" , edit_category_path(category), method: :get,class:"btn-primary center border-0 p-2 rounded-pill" %> &nbsp;</td>
+          <td><%= button_to "Delete", category_path(category), method: :delete,class:"btn-danger center border-0 p-2 rounded-pill" %> &nbsp;</td>
+        <% end %>
+        </tr>
+      <% end %>
+      </ol>
+    </table>
+    <div class="flex-row center">
+      <%= button_to "Add Categories", new_category_path(current_myuser.id), method: :get,class:"btn-success center mt-4 me-4 border-0 p-2 rounded-pill"%>
+      <%= button_to "View Events", events_path(current_myuser.id), method: :get,class:"btn-primary center mt-4 me-4 border-0 p-2 rounded-pill"%>
+      <%= button_to "Logout", logout_path, method: :delete,class:"btn-danger center mt-4 me-4 border-0 p-2 rounded-pill"%>
+    </div>
+    <% end %>
+</div>

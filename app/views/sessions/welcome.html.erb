@@ -1,0 +1,12 @@
+<h1 class="text-center">Welcome</h1>
+<% if logged_in? %>
+    <h1 class="text-center">You are Logged In, <%= current_myuser.username %></h1>
+    
+    <div class="flex-row center" >
+    <%#= button_to "Logout", logout_path, method: :delete,class:"btn-danger center mt-4 me-4 border-0 p-2 rounded-pill"%>
+    </div>
+<%end%>
+<div class="flex-row center top-50 start-50 center" >
+<%= button_to "Login", login_path, method: :get,class:"btn-primary center mt-4 me-4 border-0 p-2 rounded-pill"%>
+<%= button_to "Sign Up", new_myuser_path, method: :get,class:"btn-warning center mt-4 me-4 border-0 p-2 rounded-pill"%>
+</div>
