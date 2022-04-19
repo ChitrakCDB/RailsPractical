@@ -1,0 +1,24 @@
+<h1 class="text-center">Edit Product Form</h1>
+<p class="text-center">Update product by submitting the form</p>
+<%if flash[:errors]%>
+  <%flash[:errors].each do |error|%>
+    <p class="text-center" style='color: red'><%= error%></p>
+  <%end%>
+<%end%>
+<div class=" p-5" >
+  <%= form_for @rproduct do |f|%>
+    <%= f.label :name%>
+    <%= f.text_field :name, class:"col-12 "%>
+    <br>
+    <%= f.label :description%>
+    <%= f.text_field :description, class:"col-12 "%>
+    <br>
+    <%= f.label :price%>
+    <%= f.number_field :price, class:"col-12 "%>
+    <br>
+    <div class="d-flex">
+      <%= f.submit class:"btn-success  mt-4  border-0 p-2 rounded-pill center" %> &nbsp;
+    <% end %>
+    <%= button_to "View all Products", rproducts_path,method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %>
+  </div>
+</div>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_15_061953) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_19_050956) do
   create_table "addresses", force: :cascade do |t|
     t.string "myuser_address"
     t.integer "myuser_id"
@@ -161,6 +161,30 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_15_061953) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "rcustomers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.integer "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rorders", force: :cascade do |t|
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "rproduct_id"
+    t.index ["rproduct_id"], name: "index_rorders_on_rproduct_id"
+  end
+
+  create_table "rproducts", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "students", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
@@ -177,4 +201,5 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_15_061953) do
   end
 
   add_foreign_key "addresses", "myusers"
+  add_foreign_key "rorders", "rproducts"
 end
