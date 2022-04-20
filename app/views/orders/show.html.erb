@@ -1,0 +1,15 @@
+<%if flash[:notice] %>
+  <%flash.each do |name,msg| %>
+    <p class="text-center" style='color: green'><%= msg %></p>
+  <% end %>
+<% end %>
+<h1 class="text-center">About the Order</h1>
+<p class="text-center">Showing the Detailed Information of the Order</p>
+<h1 class="text-center">Customer Name:<%=@order.customer.fname%> <%= @order.customer.lname %> ,Product:<%= @order.myproduct.title %></h1>
+<h6 class="text-center">Quantity: <%= @order.quantity %> , TotalPrice: <%= (@order.quantity)*(@order.myproduct.price) %> , Status: <%= @order.status %> </h2>
+
+<div class="flex-row center" >
+  <%= button_to "Edit Order" , edit_order_path, method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <%= button_to "Delete Order", order_path, method: :delete,class:"btn-danger center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <%= button_to "View all Orders", orders_path,method: :get,class:"btn-warning center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+</div>

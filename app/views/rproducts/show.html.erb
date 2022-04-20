@@ -1,0 +1,36 @@
+<%if flash[:notice]%>
+  <%flash.each do |name,msg|%>
+    <p class="text-center" style='color: green'><%= msg%></p>
+  <%end%>
+<%end%>
+<h1 class="text-center">About the Product</h1>
+<p class="text-center">Showing the Detailed Information of the Product</p>
+<h1 class="text-center">Product:<%=@rproduct.name%> </h1>
+<h6 class="text-center">Price: <%=@rproduct.price%>, OrderCount: <% %> </h6>
+<h5 class="text-center">Description: <%=@rproduct.description%> </h5>
+<div class="flex-row center" >
+  <%= button_to "Edit Product" , edit_rproduct_path, method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <%= button_to "Delete Product", rproduct_path, method: :delete,class:"btn-danger center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <%= button_to "View all Products", rproducts_path,method: :get,class:"btn-warning center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <td><%= button_to "Add New order" , new_rproduct_rorder_path(@rproduct),method:  :get,class:"btn-success center mt-4 border-0 p-2 rounded-pill" %></td>
+</div>
+<div class="top-50 start-50 center" >
+  <div>
+    <table class="table  table-striped mt-2">
+      <thead>
+        <td>OrderID </td>
+        <td>Quantity </td>
+        <td class="text-center" colspan=3> Actions </td>
+      </thead>
+      <% @rproduct.rorders.each do |rorder| %>
+        <tr>
+          <td><%= rorder.id %></td>
+          <td><%= rorder.quantity %></td>
+          <td><%= button_to "Edit" , edit_rproduct_rorder_path(@rproduct,rorder), method: :get,class:"btn-primary center border-0 p-2 rounded-pill" %> &nbsp;</td>
+          <td><%= button_to "Delete", rproduct_rorder_path(@rproduct,rorder), method: :delete,class:"btn-danger center border-0 p-2 rounded-pill" %> &nbsp;</td>
+          <td><%= button_to "Show", rproduct_rorder_path(@rproduct,rorder),method: :get,class:"btn-warning center border-0 p-2 rounded-pill" %> &nbsp;</td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+<h1>Sign Up</h1>
+<%= form_for @myuser do |f|%>
+  <%= f.label :username, class: "mt-3"%><br>
+  <%= f.text_field :username, class: "mb-3 form-control"%><br>
+  <%= f.label :password, class: "mt-3"%><br>
+  <%= f.password_field :password,class: "mb-3 form-control"%><br>
+  <%= f.fields_for :address do |address| %>
+    <%= address.label "Address", class: "mt-3" %>
+    <%= address.text_field :myuser_address, class: "mb-3 form-control" %>
+  <% end %>
+  <%= f.submit class:"btn-success  mt-4  border-0 p-2 rounded-pill center" %>
+<%end%>

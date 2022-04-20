@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_14_121414) do
+ActiveRecord::Schema[7.0].define(version: 2022_04_19_050956) do
+  create_table "addresses", force: :cascade do |t|
+    t.string "myuser_address"
+    t.integer "myuser_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["myuser_id"], name: "index_addresses_on_myuser_id"
+  end
+
   create_table "authors", force: :cascade do |t|
     t.string "firstname"
     t.string "lastname"
@@ -34,6 +42,78 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_121414) do
     t.index ["author_id"], name: "index_books_on_author_id"
   end
 
+  create_table "categories", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "myuser_id"
+    t.index ["myuser_id"], name: "index_categories_on_myuser_id"
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "myuser_id"
+    t.integer "event_id"
+    t.integer "likes"
+    t.index ["event_id"], name: "index_comments_on_event_id"
+    t.index ["myuser_id"], name: "index_comments_on_myuser_id"
+  end
+
+  create_table "customers", force: :cascade do |t|
+    t.string "fname"
+    t.string "lname"
+    t.string "email"
+    t.integer "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "employees", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.string "email"
+    t.integer "age"
+    t.integer "no_of_order"
+    t.boolean "full_time_available"
+    t.float "salary"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "enrolled_users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "event_id"
+    t.integer "myuser_id"
+    t.index ["event_id"], name: "index_enrolled_users_on_event_id"
+    t.index ["myuser_id"], name: "index_enrolled_users_on_myuser_id"
+  end
+
+  create_table "events", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.date "event_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "myuser_id"
+    t.integer "category_id"
+    t.index ["category_id"], name: "index_events_on_category_id"
+    t.index ["myuser_id"], name: "index_events_on_myuser_id"
+  end
+
+  create_table "faculties", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.integer "phone_num"
+    t.string "email"
+    t.date "DOB"
+    t.string "designation"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "images", force: :cascade do |t|
     t.text "image"
     t.string "imageable_type"
@@ -41,6 +121,36 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_121414) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["imageable_type", "imageable_id"], name: "index_images_on_imageable"
+  end
+
+  create_table "myproducts", force: :cascade do |t|
+    t.string "title"
+    t.string "description"
+    t.integer "price"
+    t.integer "capacity"
+    t.boolean "is_active"
+    t.integer "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "myusers", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "quantity"
+    t.integer "status"
+    t.integer "total_price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "customer_id"
+    t.integer "myproduct_id"
+    t.index ["customer_id"], name: "index_orders_on_customer_id"
+    t.index ["myproduct_id"], name: "index_orders_on_myproduct_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -51,9 +161,45 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_14_121414) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "rcustomers", force: :cascade do |t|
+    t.string "name"
+    t.string "email"
+    t.integer "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "rorders", force: :cascade do |t|
+    t.integer "quantity"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "rproduct_id"
+    t.index ["rproduct_id"], name: "index_rorders_on_rproduct_id"
+  end
+
+  create_table "rproducts", force: :cascade do |t|
+    t.string "name"
+    t.string "description"
+    t.integer "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "students", force: :cascade do |t|
+    t.string "firstname"
+    t.string "lastname"
+    t.date "DOB"
+    t.string "department"
+    t.boolean "terms_of_usage"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "users", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "addresses", "myusers"
+  add_foreign_key "rorders", "rproducts"
 end

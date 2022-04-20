@@ -1,0 +1,14 @@
+<%if flash[:notice]%>
+  <%flash.each do |name,msg|%>
+    <p class="text-center" style='color: green'><%= msg%></p>
+  <%end%>
+<%end%>
+<h1 class="text-center">About the Customer</h1>
+<p class="text-center">Showing the Detailed Information of the Customer</p>
+<h1 class="text-center">Name:<%=@rcustomer.name%> </h1>
+<h6 class="text-center">E-mail: <%=@rcustomer.email%>, Phone: <%=@rcustomer.phone %> </h6>
+<div class="flex-row center" >
+  <%= button_to "Edit Customer" , edit_business_rcustomer_path, method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <%= button_to "Delete Customer", delete_customer_business_rcustomer_path, method: :delete,class:"btn-danger center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <%= button_to "View all Customer", business_rcustomers_path,method: :get,class:"btn-warning center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+</div>

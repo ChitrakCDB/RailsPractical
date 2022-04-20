@@ -1,0 +1,38 @@
+<div>
+  <% if flash[:notice] %>
+    <% flash.each do |name,msg| %>
+      <p class="text-center" style='color: green'><%= msg %></p>
+    <% end %>
+  <% end %>
+  <h1 class="text-center">Products List</h1>
+  <p class="text-center">Click the button to add Products</p>
+  <div class="top-50 start-50 center" >
+    <div>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+          <thead>
+            <td class="text-center"> Title </td>
+            <td class="text-center"> Price </td>
+            <td class="text-center"> OrderCount </td>
+            <td class="text-center" colspan=4> Actions </td>
+          </thead>
+          <% @rproducts.each do |rproduct|%>
+            <tr>
+              <td><%= link_to rproduct.name, rproduct_path(rproduct) %></td>
+              <td><%= rproduct.price %></td>
+              <td><%=  %></td>
+              <td><%= button_to "Edit" , edit_rproduct_path(rproduct), method: :get,class:"btn-primary center border-0 p-2 rounded-pill" %> &nbsp;</td>
+              <td><%= button_to "Delete", rproduct_path(rproduct), method: :delete,class:"btn-danger center border-0 p-2 rounded-pill" %> &nbsp;</td>
+              <td><%= button_to "Show", rproduct_path(rproduct),method: :get,class:"btn-warning center border-0 p-2 rounded-pill" %> &nbsp;</td>
+              <td><%= button_to "Add New order" , new_rproduct_rorder_path(rproduct),method:  :get,class:"btn-success center border-0 p-2 rounded-pill" %></td>
+            </tr>
+          <% end %>
+        </ol>
+      </table>
+    </div>
+    <div class="d-flex">
+      <%= button_to "Add New Product" , new_rproduct_path,method:  :get,class:"btn-success  mt-4 me-4 border-0 p-2 rounded-pill" %>
+      <%= button_to "View Customers" , business_rcustomers_path,method:  :get,class:"btn-warning  mt-4 me-4 border-0 p-2 rounded-pill" %>
+    </div>
+  </div>
+</div>

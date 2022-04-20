@@ -1,0 +1,25 @@
+ 
+<div class="position-absolute top-50 start-50 translate-middle" >
+  <div>
+  <table class="table table-warning table-striped">
+    <ol class="fs-2">
+    <thead>
+      <td class="text-center"> Title </td>
+      <td class="text-center"> Price </td>
+      <td class="text-center"> Capacity </td>
+      <td class="text-center"> Status </td>
+    </thead>
+    <% @productscope.each do |product|%>
+      <tr>
+      <td><%= link_to product.title, product_path(product) %></td>
+      <td><%= product.price %></td>
+      <td><%= product.capacity %></td>
+      <td><%= product.status %></td>
+      </tr>
+    <% end %>
+    </ol>
+  </table>
+  <div class="center">
+      <%= button_to "Go To Product Home", products_path,method: :get,class:"btn-primary  mt-4  border-0 p-2 rounded-pill" %>
+  </div>
+</div>

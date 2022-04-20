@@ -1,0 +1,14 @@
+<% if flash[:errors] %>
+  <% flash.each do |name,msg| %>
+    <p class="text-center" style='color: green'><%= msg %></p>
+  <% end %>
+<% end %>
+<h1 class="text-center">About the Faculty</h1>
+<p class="text-center">Showing the Detailed Information of the Faculty</p>
+<h1 class="text-center">Firstname: <%= @employee.firstname %> <%= @employee.lastname %> , Salary: <%= @employee.salary %> </h1>
+<h6 class="text-center">E-mail: <%= @employee.email %>, Age: <%= @employee.age %> , No. of Order: <%= @employee.no_of_order %> , Full Time Available: <%= @employee.full_time_available %></h2>
+<div class="flex-row center" >
+  <%= button_to "Edit Employee" , edit_employee_path, method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <%= button_to "Delete Employee", employee_path, method: :delete,class:"btn-danger center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <%= button_to "View all Employee", employees_path,method: :get,class:"btn-warning center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+</div>

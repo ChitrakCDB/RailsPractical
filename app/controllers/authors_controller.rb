@@ -44,7 +44,7 @@ class AuthorsController < ApplicationController
       flash[:notice]="Successfully Deleted Author!"
       redirect_to authors_path
     else  
-      flash[:errors]=@product.errors.full_messages
+      flash[:errors]=@customer.errors.full_messages
       redirect_to new_author_path
     end
         
