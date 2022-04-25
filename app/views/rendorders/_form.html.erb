@@ -1,0 +1,15 @@
+<%if flash[:errors] %>
+  <%flash[:errors].each do |error| %>
+    <p class="text-center" style='color: red'><%= error %></p>
+  <% end %>
+<% end %>
+<div class=" p-5" >
+  <%= form_with(model: [@rendproduct, @rendorder])  do |f| %>
+    <%= f.label :quantity %>
+    <%= f.number_field :quantity ,class:"col-12 "%>
+    <div class="d-flex">
+      <%=f.submit class:"btn-success  mt-4  border-0 p-2 rounded-pill center"%> &nbsp;
+    <% end %>
+    <%= button_to "View all Producs", rendproducts_path, method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %>
+  </div>
+</div>

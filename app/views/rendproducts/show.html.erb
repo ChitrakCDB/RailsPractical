@@ -1,0 +1,40 @@
+<%if flash[:notice]%>
+  <%flash.each do |name,msg|%>
+    <p class="text-center" style='color: green'><%= msg%></p>
+  <%end%>
+<%end%>
+<h1 class="text-center">About the Product</h1>
+<p class="text-center">Showing the Detailed Information of the Product</p>
+<h1 class="text-center">Product:<%=@rendproduct.name%> </h1>
+<h6 class="text-center">Price: <%=@rendproduct.price%> </h6>
+<h5 class="text-center">Description: <%=@rendproduct.description%> </h5>
+<div class="flex-row center" >
+<% if current_renduser.role=='admin'%>
+  <%= button_to "Edit Product" , edit_rendproduct_path, method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <%= button_to "Delete Product", rendproduct_path, method: :delete,class:"btn-danger center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+<% end %>
+  <%= button_to "View all Products", rendproducts_path,method: :get,class:"btn-warning center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <td><%#= button_to "Add New order" , new_rproduct_rorder_path(@rproduct),method:  :get,class:"btn-success center mt-4 border-0 p-2 rounded-pill" %></td>
+</div>
+<div class="top-50 start-50 center" >
+  <div>
+    <table class="table  table-striped mt-2">
+      <thead>
+        <td>OrderID </td>
+        <td>Quantity </td>
+        <td class="text-center" colspan=3> Actions </td>
+      </thead>
+      <% @rendproduct.rendorders.each do |rendorder| %>
+        <tr>
+          <td><%= rendorder.id %></td>
+          <td><%= rendorder.quantity %></td>
+          <% if current_renduser.role=='admin'%>
+            <td><%= button_to "Edit" , edit_rendproduct_rendorder_path(@rendproduct,rendorder), method: :get,class:"btn-primary center border-0 p-2 rounded-pill" %> &nbsp;</td>
+            <td><%= button_to "Delete", rendproduct_rendorder_path(@rendproduct,rendorder), method: :delete,class:"btn-danger center border-0 p-2 rounded-pill" %> &nbsp;</td>
+          <% end %>
+          <td><%= button_to "Show", rendproduct_rendorder_path(@rendproduct,rendorder),method: :get,class:"btn-warning center border-0 p-2 rounded-pill" %> &nbsp;</td>
+        </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
