@@ -1,6 +1,22 @@
 Rails.application.routes.draw do
+  devise_for :rendusers
+  resources :rendusers
+  resources :rendhomes
+  resources :rendproducts do
+    resources :rendorders
+  end
 
+  devise_scope :renduser do
+    authenticated :renduser do
+      root 'rendhomes#index', as: :authenticated_root
+    end
   
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
+  #get 'devise/registrations#new'
+  resources :rendproducts
   resources :categories
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
@@ -23,7 +39,7 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "articles#index"
-  root 'rproducts#index'
+  # root 'rproducts#index'
   resources :rproducts do
     resources :rorders
   end

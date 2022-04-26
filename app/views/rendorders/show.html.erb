@@ -1,0 +1,13 @@
+<%if flash[:notice]%>
+  <%flash.each do |name,msg|%>
+    <p class="text-center" style='color: green'><%= msg%></p>
+  <%end%>
+<%end%>
+<h1 class="text-center">About the Order</h1>
+<p class="text-center">Showing the Detailed Information of the Order</p>
+<h1 class="text-center">Product:<%= @rendorder.rendproduct.name %> </h1>
+<h6 class="text-center">Price: <%= @rendorder.rendproduct.price %>, Quantity: <%=@rendorder.quantity %> </h6>
+<h5 class="text-center">Description: <%= @rendorder.rendproduct.description %> </h5>
+<div class="flex-row center" >
+<%= button_to "Show Product", rendproduct_path(@rendproduct),method: :get,class:"btn-warning center border-0 p-2 rounded-pill" %>
+</div>

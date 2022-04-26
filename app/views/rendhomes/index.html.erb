@@ -1,0 +1,9 @@
+<h1 class="text-center">User Layout</h1>
+<p class="text-center">Click the button to go to product</p>
+<div class="top-50 start-50 center" >
+  <% if current_renduser %>
+    <p class="text-center">You are Logged In as<strong>: <%= current_renduser.role %></strong></p>
+    <p class="text-center">with the account of<strong>: <%= current_renduser.email %></strong></p>
+  <% end %>
+  <%= button_to "Show Product", rendproducts_path,method: :get,class:"btn-success center border-0 p-2 rounded-pill" %>
+</div>
