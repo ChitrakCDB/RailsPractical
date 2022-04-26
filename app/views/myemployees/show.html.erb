@@ -1,0 +1,19 @@
+<% if flash[:errors] %>
+  <% flash.each do |name,msg| %>
+    <p class="text-center" style='color: green'><%= msg %></p>
+  <% end %>
+<% end %>
+<h1 class="text-center">About the Employee</h1>
+<p class="text-center">Showing the Detailed Information of the Employee</p>
+<h1 class="text-center">Name: <%= @myemployee.employee_name %>, Salary: <%= @myemployee.birth_date %> </h1>
+<h6 class="text-center">E-mail: <%= @myemployee.email %>, Gender: <%= @myemployee.gender %> , Hobbies: <%= @myemployee.hobbies %> ,Contact: <%= @myemployee.mobile_number %></h6>
+<h6 class="text-center"> Address Details: </h6>
+<% @myemployee.myaddresses.each do |addr| %>
+  <h6 class="text-center"> HouseName: <%= addr.house_name %>, Street: <%= addr.street_name %>, Road: <%= addr.road%> </h6>
+<% end %>
+<h6 class="text-center">FullAddress: <%= @myemployee.address %></h6>
+<div class="flex-row center" >
+  <%= button_to "Edit Employee" , edit_myemployee_path, method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <%= button_to "Delete Employee", myemployee_path, method: :delete,class:"btn-danger center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  <%= button_to "View all Employee", myemployees_path,method: :get,class:"btn-warning center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+</div>

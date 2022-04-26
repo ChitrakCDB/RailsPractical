@@ -1,0 +1,45 @@
+<div class="top-50 start-50 center">
+  <% if flash[:errors] %>
+    <% flash.each do |name,msg| %>
+      <p class="text-center" style='color: green'><%= msg %></p>
+    <% end %>
+  <% end %>
+  <h1 class="text-center">Employees List</h1>
+  <p class="text-center">Click the button to add Employees</p>
+  <br>
+  <div class="d-flex">
+    <%= form_tag search_path, method: :get do %>
+      <%= search_field_tag :search, params[:search], class: "form-control me-2"%>
+      <div class ="d-flex center">
+        <%= submit_tag "search", class:"btn btn-outline-success mt-2"%>
+      </div>
+    <% end %>
+  </div>
+  <table class="table table-warning table-striped">
+    <ol class="fs-2">
+      <thead>
+        <td class="text-center"> Name </td>
+        <td class="text-center"> E-mail </td>
+        <td class="text-center"> Gender </td>
+        <td class="text-center"> Contact </td>
+        <td class="text-center"> BirthDate </td>
+        <td class="text-center" colspan=3> Actions </td>
+      </thead>
+      <% @myemployees.each do |myemployee|%>
+        <tr>
+          <td class="text-center"><%= link_to myemployee.employee_name, myemployee_path(myemployee) %></td>
+          <td class="text-center"><%= myemployee.email %></td>
+          <td class="text-center"><%= myemployee.gender %></td>
+          <td class="text-center"><%= myemployee.mobile_number %></td>
+          <td class="text-center"><%= myemployee.birth_date %></td>
+          <td><%= button_to "Edit" , edit_myemployee_path(myemployee), method: :get,class:"btn-primary center border-0 p-2 rounded-pill" %> &nbsp;</td>
+          <td><%= button_to "Delete", myemployee_path(myemployee), method: :delete,class:"btn-danger center border-0 p-2 rounded-pill" %> &nbsp;</td>
+          <td><%= button_to "Show", myemployee_path(myemployee),method: :get,class:"btn-warning center border-0 p-2 rounded-pill" %> &nbsp;</td>
+        </tr>
+      <% end %>
+    </ol>
+  </table>
+  <div class="center">
+    <%= button_to "Add New employee" , new_myemployee_path,method:  :get,class:"btn-success  mt-4  border-0 p-2 rounded-pill" %>
+  </div>
+</div>

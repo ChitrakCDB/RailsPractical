@@ -1,0 +1,59 @@
+<% if flash[:errors] %>
+  <% flash.each do |name,msg| %>
+    <p class="text-center" style='color: green'><%= msg %></p>
+  <% end %>
+<% end %>
+<div class="p-5" >
+  <%= form_with(model: @myemployee) do |f|%>
+    <%= f.label :employee_name %>
+    <%= f.text_field :employee_name ,class:"col-12" %>
+    <br>
+    <%= f.label :email%>
+    <%= f.email_field :email ,class:"col-12" %>
+    <br>
+    <%= f.label :password%>
+    <%= f.password_field :password, class:"col-12" %>
+    <br>
+    <%= f.label :birth_date%>
+    <br>
+    <%= f.date_field :birth_date, start_year: 1800, end_year: Time.now.year %>
+    <br>
+    <%= f.label :gender,"Gender:" %>
+    <%= f.radio_button :gender, 'Male' %> <%= f.label :Male, "Male" %>
+    <%= f.radio_button :gender, 'Female' %> <%= f.label :Female, "Female" %>
+    <br>
+    <%= f.label "Hobbies: " %>
+    <%= f.check_box :hobbies, {multiple: true}, "Gaming", false%>
+    <%= f.label "Gaming" %>
+    <%= f.check_box :hobbies, {multiple: true}, "Reading", false%>
+    <%= f.label "Reading" %>
+    <%= f.check_box :hobbies, {multiple: true}, "Travelling", false%>
+    <%= f.label "Travelling" %>
+    <%= f.check_box :hobbies, {multiple: true}, "Cooking", false%>
+    <%= f.label "Cooking" %>
+    <br>
+    <%= f.fields_for :myaddresses do |myaddress| %>
+      <%= myaddress.label "House Name", class: "mt-3" %>
+      <%= myaddress.text_field :house_name, class: "mb-3 form-control" %>
+      <%= myaddress.label "Street Name", class: "mt-3" %>
+      <%= myaddress.text_field :street_name, class: "mb-3 form-control" %>
+      <%= myaddress.label "Road", class: "mt-3" %>
+      <%= myaddress.text_field :road, class: "mb-3 form-control" %>
+    <% end %>
+    <%= f.label :address%>
+    <%= f.text_area :address, size: '70X5', class:"col-12" %>
+    <br>
+    <%= f.label :mobile_number%>
+    <%= f.number_field :mobile_number, class:"col-12" %>
+    <br>
+    <%= f.label :document%>
+    <%= f.file_field :document, class:"col-12" %>
+    <div>
+      <div>
+        <div class="d-flex">
+          <%= f.submit class:"btn-success  mt-4  border-0 p-2 rounded-pill center" %> &nbsp;
+        <% end %>
+        <%= button_to "View all Employees", myemployees_path,method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %>
+      </div>
+    </div>
+  </div>
