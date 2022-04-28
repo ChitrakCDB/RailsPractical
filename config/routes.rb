@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-
+  resources :action_mailer_users
+  root 'action_mailer_users#index'
   resources :myemployees
   get 'search', to:"myemployees#search"
   devise_for :rendusers
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
     end
   end
 
-  root 'myemployees#index'
+  #root 'myemployees#index'
   #get 'devise/registrations#new'
   resources :rendproducts
   resources :categories
