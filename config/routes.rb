@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+
+  resources :myemployees
+  get 'search', to:"myemployees#search"
   devise_for :rendusers
   resources :rendusers
   resources :rendhomes
@@ -8,13 +11,15 @@ Rails.application.routes.draw do
 
   devise_scope :renduser do
     authenticated :renduser do
-      root 'rendhomes#index', as: :authenticated_root
+      #root 'rendhomes#index', as: :authenticated_root
     end
   
     unauthenticated do
-      root 'devise/sessions#new', as: :unauthenticated_root
+      #root 'devise/sessions#new', as: :unauthenticated_root
     end
   end
+
+  root 'myemployees#index'
   #get 'devise/registrations#new'
   resources :rendproducts
   resources :categories

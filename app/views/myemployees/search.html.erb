@@ -1,0 +1,32 @@
+<%if flash[:notice]%>
+  <%flash.each do |name,msg|%>
+    <p class="text-center" style='color: green'><%= msg%></p>
+  <%end%>
+<%end%>
+<div class="top-50 start-50 center" >
+  <div>
+    <table class="table table-warning table-striped">
+      <ol class="fs-2">
+        <thead>
+          <td class="text-center"> Name </td>
+          <td class="text-center"> Email </td>
+          <td class="text-center"> Phone </td>
+          <td class="text-center" colspan=3> Actions </td>
+        </thead>
+        <% @myemployee.each do |myemployee|%>
+          <tr>
+            <td><%= myemployee.employee_name %></td>
+            <td><%= myemployee.email %></td>
+            <td><%= myemployee.mobile_number %></td>
+            <td><%= button_to "Edit" , edit_myemployee_path(myemployee), method: :get,class:"btn-primary center border-0 p-2 rounded-pill" %> &nbsp;</td>
+            <td><%= button_to "Delete", myemployee_path(myemployee), method: :delete,class:"btn-danger center border-0 p-2 rounded-pill" %> &nbsp;</td>
+            <td><%= button_to "Show", myemployee_path(myemployee),method: :get,class:"btn-warning center border-0 p-2 rounded-pill" %> &nbsp;</td>
+          </tr>
+        <% end %>
+      </ol>
+    </table>
+  </div>
+  <div class="flex-row center" >
+    <%= button_to "View all Employee", myemployees_path,method: :get,class:"btn-warning center mt-4 border-0 p-2 rounded-pill" %> &nbsp;
+  </div>
+</div>
