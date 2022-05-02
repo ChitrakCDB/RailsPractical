@@ -1,4 +1,25 @@
 Rails.application.routes.draw do
+  
+  namespace :api do
+    namespace :v1 do
+      resources :articles do
+        collection do
+          get :search
+        end
+      end
+    end
+  end
+
+  namespace :api do
+    namespace :v1 do
+      resources :comments do
+        collection do
+          get :search
+        end
+      end
+    end
+  end
+  
   resources :action_mailer_users
   root 'action_mailer_users#index'
   resources :myemployees

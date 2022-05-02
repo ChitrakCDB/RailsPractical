@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_04_27_081414) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_02_064210) do
   create_table "action_mailer_users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -25,6 +25,23 @@ ActiveRecord::Schema[7.0].define(version: 2022_04_27_081414) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["myuser_id"], name: "index_addresses_on_myuser_id"
+  end
+
+  create_table "api_comments", force: :cascade do |t|
+    t.string "content"
+    t.date "date_of_comment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "article_id"
+    t.index ["article_id"], name: "index_api_comments_on_article_id"
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.string "title"
+    t.string "body"
+    t.date "release_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "authors", force: :cascade do |t|
