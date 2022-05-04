@@ -1,0 +1,36 @@
+<div>
+  <% if flash[:notice] %>
+    <% flash.each do |name,msg| %>
+      <p class="text-center" style='color: green'><%= msg %></p>
+    <% end %>
+  <% end %>
+  <h1 class="text-center">Users List</h1>
+  <p class="text-center">Click the button to add Users</p>
+  <div class="top-50 start-50 center" >
+    <div>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+          <thead>
+            <td class="text-center"> Name </td>
+            <td class="text-center"> Email </td>
+            <td class="text-center"> Picture </td>
+            <td class="text-center" colspan=3> Actions </td>
+          </thead>
+          <% @amusers.each do |amuser|%>
+            <tr>
+              <td><%= link_to amuser.name, action_mailer_user_path(amuser) %></td>
+              <td><%= amuser.email %></td>
+              <td><%= image_tag (amuser.picture.url) , style:"width:70px;" %></td>
+              <td><%= button_to "Edit" , edit_action_mailer_user_path(amuser), method: :get,class:"btn-primary center border-0 p-2 rounded-pill" %> &nbsp;</td>
+              <td><%= button_to "Delete", action_mailer_user_path(amuser), method: :delete,class:"btn-danger center border-0 p-2 rounded-pill" %> &nbsp;</td>
+              <td><%= button_to "Show", action_mailer_user_path(amuser),method: :get,class:"btn-warning center border-0 p-2 rounded-pill" %> &nbsp;</td>
+            </tr>
+          <% end %>
+        </ol>
+      </table>
+    </div>
+    <div class="d-flex">
+      <%= button_to "Add New User" , new_action_mailer_user_path,method: :get,class:"btn-success  mt-4 me-4 border-0 p-2 rounded-pill" %>
+    </div>
+  </div>
+</div>

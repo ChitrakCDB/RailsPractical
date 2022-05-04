@@ -1,0 +1,2 @@
+module ActionMailerUsersHelper
+end

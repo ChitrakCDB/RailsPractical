@@ -1,0 +1,21 @@
+<% if flash[:errors] %>
+  <% flash.each do |name,msg| %>
+    <p class="text-center" style='color: green'><%= msg %></p>
+  <% end %>
+<% end %>
+<div class="p-5" >
+  <%= form_with model: @amuser do |f|%>
+    <%= f.label :name %>
+    <%= f.text_field :name ,class:"col-12" %>
+    <br>
+    <%= f.label :email%>
+    <%= f.email_field :email ,class:"col-12" %>
+    <br>
+    <%= f.label :picture%>
+    <%= f.file_field :picture, class:"col-12" %>
+    <div class="d-flex">
+      <%= f.submit class:"btn-success  mt-4  border-0 p-2 rounded-pill center" %> &nbsp;
+    <% end %>
+    <%= button_to "View all Users", action_mailer_users_path,method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %>
+  </div>
+</div>

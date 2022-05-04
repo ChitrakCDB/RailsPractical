@@ -1,0 +1,23 @@
+<div class="center flex-column mt-5">
+  <% if flash[:errors] %>
+    <% flash.each do |name,message| %>
+      <p class="text-danger"><%= message%></p>
+    <% end %>
+  <% end %>
+  <div class="showcard">
+    <div class="card" style="width: 18rem;">
+      <%  if @amuser.picture? %>
+        <%= image_tag (@amuser.picture.url(:thumb)) %>
+      <% end %>
+      <div class="card-body">
+        <h5 class="card-title"><%= @amuser.name %></h5>
+        <p class="card-text"><%= @amuser.email %></p>
+        <div class="card_btn">
+          <%= button_to "Edit" , edit_action_mailer_user_path, method: :get ,class:"btn-success border-0 rounded-pill shadow px-3 py-2 m-2" %>
+          <%= button_to "Delete", action_mailer_user_path, method: :delete ,class:"btn-danger border-0 rounded-pill shadow px-3 py-2 m-2" %>
+        </div>
+        <%= button_to "View All User", action_mailer_users_path,method: :get ,class:"btn-primary border-0 rounded-pill shadow p-2 m-2" %>
+      </div>
+    </div>
+  </div>
+</div>
