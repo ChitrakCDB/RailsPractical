@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  
+  resources :test_products
   namespace :api do
     namespace :v1 do
       resources :articles do
@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   end
   
   resources :action_mailer_users
-  root 'action_mailer_users#index'
+  #root 'action_mailer_users#index'
   resources :myemployees
   get 'search', to:"myemployees#search"
   devise_for :rendusers
@@ -34,10 +34,11 @@ Rails.application.routes.draw do
   devise_scope :renduser do
     authenticated :renduser do
       #root 'rendhomes#index', as: :authenticated_root
+      root 'test_products#index', as: :authenticated_root
     end
   
     unauthenticated do
-      #root 'devise/sessions#new', as: :unauthenticated_root
+      root 'devise/sessions#new', as: :unauthenticated_root
     end
   end
 
