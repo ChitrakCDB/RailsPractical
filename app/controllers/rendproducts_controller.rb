@@ -1,5 +1,5 @@
 class RendproductsController < ApplicationController
-  
+  before_action :authenticate_user
   def index
   @rendproducts = Rendproduct.all
   end
@@ -51,6 +51,13 @@ class RendproductsController < ApplicationController
   end 
   end 
   
+  def authenticate_user
+    if !current_renduser
+      flash[:notice]="Please login or sign up!"
+      redirect_to new_renduser_session_path
+    end
+  end
+
   private
   def rendproduct_params
   params.require(:rendproduct).permit(:name, :price, :description, :renduser_id)

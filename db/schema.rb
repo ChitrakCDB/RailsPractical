@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_02_064210) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_03_085449) do
   create_table "action_mailer_users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -273,6 +273,16 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_02_064210) do
     t.boolean "terms_of_usage"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "test_products", force: :cascade do |t|
+    t.string "product_name"
+    t.integer "price"
+    t.string "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "renduser_id"
+    t.index ["renduser_id"], name: "index_test_products_on_renduser_id"
   end
 
   create_table "users", force: :cascade do |t|

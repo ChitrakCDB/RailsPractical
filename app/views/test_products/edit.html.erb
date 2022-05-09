@@ -1,0 +1,24 @@
+<%if flash[:errors]%>
+  <%flash[:errors].each do |error|%>
+    <p class="text-center" style='color: red'><%= error%></p>
+  <%end%>
+<%end%>
+<h1>TestProducts Edit</h1>
+<div class=" p-5" >
+  <%= form_for @testproduct do |f|%>
+    <%= f.hidden_field :renduser_id, value: current_renduser.id %>
+    <%= f.label :product_name%>
+    <%= f.text_field :product_name, class:"col-12 "%>
+    <br>
+    <%= f.label :description%>
+    <%= f.text_area :description, size: '70X5', class:"col-12" %>
+    <br>
+    <%= f.label :price%>
+    <%= f.number_field :price, class:"col-12 "%>
+    <br>
+    <div class="d-flex">
+      <%= f.submit class:"btn-success  mt-4  border-0 p-2 rounded-pill center" %> &nbsp;
+    <% end %>
+    <%= button_to "View all Products", test_products_path,method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %>
+  </div>
+</div>

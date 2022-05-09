@@ -1,9 +1,9 @@
 # Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  comment: MyString
+  content: MyString
   date_of_comment: 2022-05-02
 
 two:
-  comment: MyString
+  content: MyString
   date_of_comment: 2022-05-02
