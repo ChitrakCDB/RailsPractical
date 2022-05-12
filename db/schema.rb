@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_05_03_085449) do
+ActiveRecord::Schema[7.0].define(version: 2022_05_11_110917) do
   create_table "action_mailer_users", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -214,6 +214,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_05_03_085449) do
     t.string "name"
     t.string "email"
     t.integer "phone"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "registerusers", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "email"
+    t.string "password"
+    t.boolean "subscription"
+    t.string "subscription_email"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

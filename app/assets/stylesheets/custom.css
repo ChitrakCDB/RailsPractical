@@ -1,5 +1,5 @@
 body{
-    background-color:#f6e0b5;
+    background-color:#f6e0b5 !important;
 }
 .center{
     display: flex;
