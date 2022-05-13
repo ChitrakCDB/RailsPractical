@@ -1,0 +1,55 @@
+<h1>Edit User</h1>
+<div class=" p-5" >
+  <%= form_with(model: @registeruser, local: false) do |f| %>
+    <%= f.label :first_name, "First Name :", class:"mt-3" %>
+    <%= f.text_field :first_name ,placeholder: "Enter Your First Name",class:"mb-2 form-control" %>
+    <br>
+    <%= f.label :last_name, "Last Name :" %>
+    <%= f.text_field :last_name ,placeholder: "Enter Your Last Name",class:"mb-2 form-control" %>
+    <br>
+    <%= f.label :email, "E-mail ID :" %>
+    <%= f.email_field :email ,placeholder: "Enter Your E-mail",id:"emailfield",oninput:'emailchange();',class:"mb-2 form-control" %>
+    <br>
+    <div id="passwordfield" style="display:none">
+      <%= f.label :password, "Password :" %>
+      <%= f.password_field :password ,placeholder: "Enter Your Password", class:"mb-2 form-control" %>
+    </div>
+    <br>
+    <%= f.label :subscription, "Do you want a Subscription?" %> &nbsp;
+    <%= f.check_box :subscription, id:"subcheck", onclick:'subscriptioncheck();', class:"form-check-input" %>
+    <br>
+    <div id="submail" style="display:none">
+      <%= f.label :subscription_email, "Subscription Email :", class:"mt-3" %>
+      <%= f.email_field :subscription_email ,placeholder: "Enter E-mail for subscription",class:"mb-2 form-control" %>
+      <br>
+    </div>
+    <div class="d-flex">
+      <%= f.submit data: { disable_with: "Saving..." }, class:"btn-success  mt-4 me-2  border-0 p-2 rounded-pill center" %>
+    <% end %>
+    <%= button_to "View all Users", registerusers_path,method: :get,class:"btn-primary center mt-4 border-0 p-2 rounded-pill" %>
+  </div>
+</div>
+<div id="displayInfo">
+</div>
+<script>
+  function emailchange() {
+    var email = document.getElementById('emailfield').value;
+    var changeval = "<%= @registeruser.email %>";
+    if (email != changeval){
+      document.getElementById('passwordfield').style.display = "block";
+    }
+    else{
+      document.getElementById('passwordfield').style.display = "none";
+    }
+  }
+
+  function subscriptioncheck(){
+    var subscheck = subcheck.checked
+    if (subscheck == 0){
+      document.getElementById('submail').style.display = "none";
+    }
+    else{
+      document.getElementById('submail').style.display = "";
+    }
+  }
+</script>

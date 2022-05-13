@@ -1,4 +1,12 @@
 Rails.application.routes.draw do
+  resources :registerusers do
+    member do
+      get 'changepassword'
+      patch 'updatepassword'
+    end
+  end 
+  
+  root 'registerusers#index'
   resources :test_products
   namespace :api do
     namespace :v1 do
@@ -34,7 +42,7 @@ Rails.application.routes.draw do
   devise_scope :renduser do
     authenticated :renduser do
       #root 'rendhomes#index', as: :authenticated_root
-      root 'test_products#index', as: :authenticated_root
+      #root 'test_products#index', as: :authenticated_root
     end
   
     unauthenticated do

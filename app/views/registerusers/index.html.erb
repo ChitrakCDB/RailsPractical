@@ -1,0 +1,32 @@
+<div>
+  <% if flash[:notice] %>
+    <% flash.each do |name,msg| %>
+      <p class="text-center" style='color: green'><%= msg %></p>
+    <% end %>
+  <% end %>
+  <h1 class="text-center">Users List</h1>
+  <p class="text-center">Click the button to add Users</p>
+  <div class="top-50 start-50 center" >
+    <div>
+      <table class="table table-warning table-striped">
+        <ol class="fs-2">
+          <thead>
+            <td class="text-center"> Name </td>
+            <td class="text-center"> E-mail </td>
+            <td class="text-center" colspan=2> Actions </td>
+          </thead>
+          <% @registerusers.each do |registeruser|%>
+            <tr>
+              <td><%= link_to (registeruser.first_name + " " + registeruser.last_name), registeruser_path(registeruser) %></td>
+              <td><%= registeruser.email %></td>
+              <td><%= button_to "View Profile" , registeruser_path(registeruser.id), method: :get,class:"btn-primary center border-0 p-2 rounded-pill" %> </td>&nbsp;
+              <td><%= button_to "Delete Profile", registeruser_path(registeruser.id), method: :delete, data: { confirm: "Are you sure you want to delete this data?" },class:"btn-danger center border-0 p-2 rounded-pill" %> &nbsp;</td>
+            </tr>
+          <% end %>
+        </ol>
+      </table>
+    </div class = "flex-row center">
+      <%= button_to "Add New User" , new_registeruser_path, method:  :get,class:"btn-success  border-0 p-2 rounded-pill" %>
+    </div>
+  </div>
+</div>

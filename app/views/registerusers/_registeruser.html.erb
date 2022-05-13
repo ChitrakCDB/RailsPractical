@@ -1,0 +1,18 @@
+<div class="center flex-column mt-5">
+  <% if flash[:errors] %>
+    <% flash.each do |name,message| %>
+      <p class="text-danger"><%= message%></p>
+    <% end %>
+  <% end %>
+  <div class="showcard">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title">Name:<%= registeruser.first_name %><%= registeruser.last_name %></h5>
+        <p class="card-text">Email:<%= registeruser.email %></p>
+        <p class="card-text">Password:<%= registeruser.password %></p>
+        <p class="card-text">Subscription Mail:<%= registeruser.subscription_email %></p>
+        <p class="card-text">Active Subscriber:<%= registeruser.subscription %></p>
+      </div>
+    </div>
+  </div>
+</div>

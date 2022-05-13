@@ -1,0 +1,30 @@
+<h1>Profile page of User</h1>
+<div class="center flex-column mt-5">
+  <% if flash[:errors] %>
+    <% flash.each do |name,message| %>
+      <p class="text-danger"><%= message%></p>
+    <% end %>
+  <% end %>
+  <div class="showcard">
+    <div class="card" style="width: 18rem;">
+      <div class="card-body">
+        <h5 class="card-title"><%= @registeruser.first_name %> <%= @registeruser.last_name %></h5>
+        <p class="card-text"><%= @registeruser.email %></p>
+        <p class="card-text"><strong>Active Subscriber:</strong><%= @registeruser.subscription %></p>
+        <p class="card-text"><strong>Subscription Mail:</strong><%= @registeruser.subscription_email %></p>
+        <div class="card_btn">
+          <%= link_to "Change Password", changepassword_registeruser_path, method: :get  %>
+          <%= button_to "Edit Profile" , edit_registeruser_path(@registeruser), method: :get ,class:"btn-success border-0 rounded-pill shadow px-3 py-2 m-2" %>
+          <%= button_to "Delete Profile", registeruser_path, method: :delete, data: { confirm: "Are you sure you want to delete this data?" }, class:"btn-danger border-0 rounded-pill shadow px-3 py-2 m-2" %>
+        </div>
+        <%= button_to "View All User", registerusers_path,method: :get ,class:"btn-primary border-0 rounded-pill shadow p-2 m-2" %>
+      </div>
+    </div>
+  </div>
+</div>
+<%# <script>
+$("p").click(function(){
+    alert("The paragraph was clicked.");
+  });
+
+</script>  %>
